@@ -68,6 +68,130 @@ const Analytics = () =>{
               />
             </p>
           </div>
+          <div>
+            <h2>Game 3</h2>
+            <ul>
+              <li>Total Players:</li>
+              <li>Average Players:</li>
+              <li>Repeat Players:</li>
+            </ul>
+            <p>Rating:</p>
+            <p>
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+            </p>
+          </div>
+          <div>
+            <h2>Game 4</h2>
+            <ul>
+              <li>Total Players:</li>
+              <li>Average Players:</li>
+              <li>Repeat Players:</li>
+            </ul>
+            <p>Rating:</p>
+            <p>
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+            </p>
+          </div>
+          <div>
+            <h2>Game 5</h2>
+            <ul>
+              <li>Total Players:</li>
+              <li>Average Players:</li>
+              <li>Repeat Players:</li>
+            </ul>
+            <p>Rating:</p>
+            <p>
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+            </p>
+          </div>
+          <div>
+            <h2>Game 6</h2>
+            <ul>
+              <li>Total Players:</li>
+              <li>Average Players:</li>
+              <li>Repeat Players:</li>
+            </ul>
+            <p>Rating:</p>
+            <p>
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+              <img
+                src="https://static-resources.zybooks.com/star.png"
+                alt="star"
+              />
+            </p>
+          </div>
         </div>
       </body>
     );
