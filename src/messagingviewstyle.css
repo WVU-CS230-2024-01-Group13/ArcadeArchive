@@ -1,0 +1,62 @@
+
+.container{
+	width: 100%;
+	text-align: center; 
+	font-size: 24px;
+	margin: auto; 
+	font-family: Arial;
+}
+.messagebox{
+	padding: 25px; 
+	border-radius: 25px;
+	display: none;
+	width: 25%; 
+	position: absolute; 
+	left: 50%;
+	top: 50%; 
+	transform: translate(-50%, -50%);
+	border: 1px solid black; 
+}
+.chat{
+	position: relative;
+	margin: auto;
+	width: 75%;
+	padding: 30px; 
+	border: 1px solid; 
+	border-radius: 25px; 
+}
+input{
+	width: 75%; 
+}
+#send{
+	width: 25%; 
+}
+
+img{
+	border-radius: 50%;
+}
+table{
+	position: absolute; 
+	top: 50%; 
+	transform: translate(0, -50%);
+	border: 1px solid; 
+	border-radius: 25px; 
+	width: 25%;
+	background-color: #ffffff;
+}
+button{
+	font-size: 24px; 
+	
+}
+td{
+	text-align: left;
+	padding:30px;
+	color: #000000;
+}
+
+th{
+	border-bottom: 1px solid; 
+	text-align: center;
+	border-color: #000000;
+}
+	
