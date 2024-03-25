@@ -1,43 +1,399 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Arcade Archive Login</title>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <!-- update the version number as needed -->
+   
+    <style>
+      
+      body {
+        
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: rgb(255,255,255,0.6);
+        background-image: url(https://cdn.discordapp.com/attachments/1195467839545561210/1215080621228040253/video-game-collage-wallpaper-preview.jpg?ex=65fb7303&is=65e8fe03&hm=e71b01df55f743bfb54eb7f90b7c4f6413162917c83697d145333b9ab45d4ce4&);
+        background-blend-mode: lighten;
+      }
+      .container {
+        position: relative;
+        text-align: center;
+        margin-top: 50px;
+        padding: 0 10px;
+      }
+      .logo {
+        max-width: 80%;
+        margin-bottom: 30px;
+        border: 10px solid #333; /* Darker border */
+        border-radius: 15px; /* Rounded corners */
+        background-color: #fff; /* White background */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding shadow */
+      }
+      .button {
+        padding: 10px 20px;
+        font-size: 18px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin: 10px;
+        transition: background-color 0.3s ease; /* Adding transition for button background color */
+        background-color: #f0f0f0; /* Lighter background color */
+        color: #000; /* Black text color */
+        border: 1px solid #ccc; /* Faint border */
+      }
+      .login-button, .signup-button {
+        background-color: #333; /* Darker background color */
+        color: #fff; /* White text color */
+      }
+      .login-form, .signup-form {
+        display: none;
+      }
+      .password, .username{
+        text-align: center;
+        padding: 10px 20px;
+      }
+      .input-field {
+        margin: 10px;
+        padding: 8px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: calc(100% - 20px);
+      }
+      /* Animation for showing login form */
+      @keyframes slideIn {
+        0% {
+          opacity: 0;
+          transform: translateY(-50%);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      /* Animation for hiding login form */
+      @keyframes slideOut {
+        0% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-50%);
+        }
+      }
+  
+      /* Media Query for mobile devices */
+      @media (max-width: 768px) {
+        .container {
+          margin-top: 20px;
+        }
+        .logo {
+          max-width: 90%;
+          margin-bottom: 20px;
+        }
+        .button {
+          font-size: 16px;
+        }
+      }
+    </style>
   </head>
+
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+  <div id="message">
+      <div class="container">
+        <img src="https://cdn.discordapp.com/attachments/1195467839545561210/1215080620481445978/Arcade.png?ex=65fb7303&is=65e8fe03&hm=2e11c761e6ad02d1149cd6b6728284fadc0003bca7f2826ab67590d4d929dfa1&" alt="Arcade Archive Logo" class="logo">
+        <div id="button-container">
+          <button class="button login-button" id="login-btn"  >Login</button>
+          
+          <button class="button signup-button" id="signup-btn" >Create an Account</button>
+        </div>
+        <div class="login-form" id="login-form">
+        <form action="#" method="post">
+          <input type="text" class="input-field" placeholder="Email" id="login-email">
+          <br>
+          <input type="password" class="input-field" placeholder="Password" id="login-password">
+          <br>
+          <button type="button" class="button login-button" id="sumbit-btn">Submit</button>
+          <br>
+          <button type="button" class="button back-button" id="back-login-btn" >Back</button>
+        </form>
+        </div>
+        <form class="signup-form" id="signup-form">
+          <input type="text" class="input-field" placeholder="Username" id="signup-username">
+          <br>
+          <input type="email" class="input-field" placeholder="Email" id="signup-email">
+          <br>
+          <input type="password" class="input-field" placeholder="Password" id="signup-password">
+          <br>
+          <button type="button" class="button signup-button" id="create-account-bnt">Create Account</button>
+          <br>
+          <button type="button" class="button back-button" id="back-signup-btn" >Back</button>
+        </form>
+      </div>
+    </div>
+  
+    
+    <script type="module">
+         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+         import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+         import { getDatabase, ref, child, set, update } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+        const firebaseConfig = {
+        apiKey: "AIzaSyA2R8066aBNkqCYljLoVPYzq1HEhn-RvyE",
+        authDomain: "group-13-cs230-spring-2024.firebaseapp.com",
+        projectId: "group-13-cs230-spring-2024",
+        storageBucket: "group-13-cs230-spring-2024.appspot.com",
+        messagingSenderId: "217702472604",
+        appId: "1:217702472604:web:0e13be0ce09d68a3d50659",
+        measurementId: "G-SQ2V1VWEH0"
+        };
+       
+        window.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('login-btn').addEventListener('click', showLoginPage);
+    document.getElementById('signup-btn').addEventListener('click', showCreateAccount);
+    document.getElementById('back-login-btn').addEventListener('click', back);
+    document.getElementById('back-signup-btn').addEventListener('click', back);
+    document.getElementById('create-account-bnt').addEventListener('click',register);
+    document.getElementById('sumbit-btn').addEventListener('click',login)
+  });
+      function showCreateAccount(){
+        document.getElementById('button-container').style.display = 'none';
+        document.getElementById('signup-form').style.display = 'block';
+        document.getElementById('signup-form').style.animation = 'slideIn 0.5s ease forwards'; // Apply slideIn animation
+      };
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+      function showLoginPage() {
+        document.getElementById('button-container').style.display = 'none';
+        document.getElementById('login-form').style.display = 'block';
+        document.getElementById('login-form').style.animation = 'slideIn 0.5s ease forwards'; // Apply slideIn animation
+      };
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
+     function back() {
+      document.getElementById('button-container').style.display = 'block';
+      document.getElementById('signup-form').style.animation = 'slideOut 0.5s ease forwards'; // Apply slideOut animation
+      setTimeout(() => { document.getElementById('signup-form').style.display = 'none'; }, 500); // Hide form after animation
+    };
+
+
+       const app=initializeApp(firebaseConfig)
+        // initialized variables for auth
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+       
+        // Validate email. Makes sure the email input is in email format
+
+
+        function validate_email(email){
+         var  expression = /^[^@]+@\w+(\.\w+)+\w$/
+          if(expression.test(email)==true){
+            // email is correctly formatted
+            return true
+          }else{
+            // email is not correctly formatted
+            return false
+          }
+        }
+
+
+       // Validate Password
+        function validate_password(password){
+          if(password < 6){
+            return false;
+          }else{
+            return true;
+          }
+        }
+        // Validate fields
+        function validate_field(field){
+          if(field==null){
+            return false
+          }
+          if(field.length<=0){
+            return false
+          }else{
+            return true
+          }
+        }
+
+
+         //register function 
+        function register(){
+          var email = document.getElementById('signup-email').value
+          var password = document.getElementById('signup-password').value
+          var username = document.getElementById('signup-username').value
+ 
+          if(validate_password ==false || validate_email==false){
+           alert ('email or password needs changed')
+           return
+         }
+          if( validate_field(username)==false){
+            alert('invalid input for username')
+            return
+          }
+          createUserWithEmailAndPassword(auth,email, password)
+          .then(function(){
+
+            
+            console.log("entered function")
+            var user = auth.currentUser
+            var database_ref = ref(database);
+            // create user data
+            var user_data ={
+              email:email,
+              username:username,
+             last_login: Date.now()
+            }
+            const usersRef = ref(database, 'users/' + user.uid);
+            
+            set(usersRef, user_data)
+          .then(() => {
+           alert('User Created!!');
+          })
+          .catch((error) => {
+              var errorCode = error.code;
+             var errorMessage = error.message;
+              alert(errorMessage + " " + errorCode);
+              console.log(errorMessage + " " + errorCode);
+       });
+
+
+
+          })
+          .catch(function(error){
+            var errorCode = error.code;
+           var errorMessage = error.message;
+           alert(errorMessage+" "+errorCode)
+
+           console.log(errorMessage+" "+errorCode);
+            
+          })
+        }
+        function login () {
+  // Get all our input fields
+  var email = document.getElementById('login-email').value
+  var password = document.getElementById('login-password').value
+
+  // Validate input fields
+  if (validate_email(email) == false || validate_password(password) == false) {
+    alert('Email or Password is Outta Line!!')
+    return
+    // Don't continue running the code
+  }
+
+  signInWithEmailAndPassword(auth,email, password)
+  .then(function() {
+    var user = auth.currentUser
+
+    // Add this user to Firebase Database
+    var database_ref = ref(database);
+
+    // Create User data
+    var user_data = {
+      last_login : Date.now()
+    }
+
+    // Push to Firebase Database
+    const usersRef = ref(database, 'users/' + user.uid);
+            
+            update(usersRef, user_data)
+          .then(() => {
+           alert('User login!!');
+          })
+          .catch((error) => {
+              var errorCode = error.code;
+             var errorMessage = error.message;
+              alert(errorMessage + " " + errorCode);
+              console.log(errorMessage + " " + errorCode);
+       });
+
+  })
+  .catch(function(error) {
+    // Firebase will use this to alert of its errors
+    var error_code = error.code
+    var error_message = error.message
+
+    alert(error_message)
+  })
+}
+
+      // document.addEventListener('DOMContentLoaded', function() {
+      //   const loadEl = document.querySelector('#load');
+      //   // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+      //   // // The Firebase SDK is initialized and available here!
+      //   //
+      //   firebase.auth().onAuthStateChanged(user => { });
+      //   firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+      //   firebase.firestore().doc('/foo/bar').get().then(() => { });
+      //   firebase.functions().httpsCallable('yourFunction')().then(() => { });
+      //   firebase.messaging().requestPermission().then(() => { });
+      //   firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+      //   firebase.analytics(); // call to activate
+      //   firebase.analytics().logEvent('tutorial_completed');
+      //   firebase.performance(); // call to activate
+        
+      //   // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+      //   try {
+      //     let app = firebase.app();
+      //     let features = [
+      //       'auth', 
+      //       'database', 
+      //       'firestore',
+      //       'functions',
+      //       'messaging', 
+      //       'storage', 
+      //       'analytics', 
+      //       'remoteConfig',
+      //       'performance',
+      //     ].filter(feature => typeof app[feature] === 'function');
+      //     loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+      //   } catch (error) {
+      //     console.error(e);
+      //     loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+      //   }
+      // });
+      
+
+
+
+
+
+  
+
+    // Add hover effect to buttons
+    var buttons = document.querySelectorAll('.button');
+    buttons.forEach(function(button) {
+      button.addEventListener('mouseenter', function() {
+        button.style.backgroundColor = "#555";
+      });
+      button.addEventListener('mouseleave', function() {
+        if (button.classList.contains('back-button')) {
+          button.style.backgroundColor = "#f0f0f0";
+        } else {
+          button.style.backgroundColor = "#333";
+        }
+      });
+    });
+    
+    </script>
+   
+
+
+<!-- include only the Firebase features as you need -->
+ 
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
     -->
+
+    
+    
+    
+
+
   </body>
+    
 </html>
