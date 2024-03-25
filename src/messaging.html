@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content = "width=device-width initial-scale=1.0">
+	<title>messages</title>
+	<link href="messagingviewstyle.css" rel="stylesheet"> 	
+</head>
+
+<body>
+
+	<!--container for styling all items-->
+    <div class="container">
+		<!-- list of friends to chat with, includes usernames and profile pictures-->
+        <table>
+            <tr>
+                <th colspan="2">friends</th>
+            </tr>
+            <tr>
+                <td width=50px> <img src="samplepfp.png" alt="" height=50 width=50></img> </td>
+                <td><button type="button" onclick="message('username1')">username1</button></td>
+            </tr>
+            <tr>
+                <td width=50px> <img src="samplepfp.png" alt="" height=50 width=50></img> </td>
+                <td><button type="button" onclick="message('username2')">username2</button></td>
+            </tr>
+			<tr>
+                <td width=50px> <img src="samplepfp.png" alt="" height=50 width=50></img> </td>
+                <td><button type="button" onclick="message('username3')">username3</button></td>
+            </tr>
+            <tr>
+                <td width=50px> <img src="samplepfp.png" alt="" height=50 width=50></img> </td>
+                <td><button type="button" onclick="message('username4')">username4</button></td>
+            </tr>
+        </table>
+		
+		<!-- messaging box object-->
+        <div id="messagebox" class="messagebox">
+		
+			<!-- displays username for the selected user to chat with-->
+			<div id="user" class="user"></div>
+			
+			<!-- displays user history once functionality is added-->
+			<div id="chat" class = "chat"></div>
+			
+			<!-- gets user input for message -->
+            <form id = "messageform">
+                <input type="text" id="message" name="message" placeholder = "type here">
+                <input id = "send" type="submit" value="send" onclick="stopRefresh(event)">
+            </form>
+        </div>
+    </div>
+
+    <script>
+		
+		//stops page from refreshing when submit is pressed
+		function stopRefresh(event){
+			event.preventDefault();
+		}
+		
+		//hides/unhides message box, also changes which user is selected to chat with
+        function message(username) {
+            var messageBox = document.getElementById('messagebox');
+			var user = document.getElementById('user');
+			var chatHistory = getHistory(username);
+			
+			chat.innerHTML = chatHistory; 
+		
+			user.textContent = username; 
+			
+            if(messageBox.style.display === 'none' || messageBox.style.display === ''){
+				messageBox.style.display = 'block';
+			}
+        }
+			
+		//will return chat history from database
+		function getHistory(username){
+			var history = "chat history will be retrieved from database"; 
+			
+			return history; 
+		}
+		
+		
+    </script>
+</body>
+</html>
+
+	

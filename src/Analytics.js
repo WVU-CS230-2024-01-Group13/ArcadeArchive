@@ -2,11 +2,11 @@ import React from 'react';
 
 const Analytics = () =>{
    return (
-      <body>
+      <body style = {bodyStyle}>
         <h1 className="main-title">Analytics</h1>
   
-        <div id="grid-container">
-          <div>
+        <div style = {gridContainerStyle}>
+          <div style = {gridItemStyle}>
             <h2>Game 1</h2>
             <ul>
               <li>Total Players:</li>
@@ -37,7 +37,7 @@ const Analytics = () =>{
               />
             </p>
           </div>
-          <div>
+          <div style = {gridItemStyle}>
             <h2>Game 2</h2>
             <ul>
               <li>Total Players:</li>
@@ -68,7 +68,7 @@ const Analytics = () =>{
               />
             </p>
           </div>
-          <div>
+          <div style = {gridItemStyle}>
             <h2>Game 3</h2>
             <ul>
               <li>Total Players:</li>
@@ -99,7 +99,7 @@ const Analytics = () =>{
               />
             </p>
           </div>
-          <div>
+          <div style = {gridItemStyle}>
             <h2>Game 4</h2>
             <ul>
               <li>Total Players:</li>
@@ -130,7 +130,7 @@ const Analytics = () =>{
               />
             </p>
           </div>
-          <div>
+          <div style = {gridItemStyle}>
             <h2>Game 5</h2>
             <ul>
               <li>Total Players:</li>
@@ -161,7 +161,7 @@ const Analytics = () =>{
               />
             </p>
           </div>
-          <div>
+          <div style = {gridItemStyle}>
             <h2>Game 6</h2>
             <ul>
               <li>Total Players:</li>
