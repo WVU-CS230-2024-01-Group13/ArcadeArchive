@@ -1,7 +1,7 @@
-import CreatorView from './CreatorView';
-import Analytics from './Analytics';
-import Card from './profView';
-import PasswordRecovery from './PasswordRecovery';
+import CreatorView from './pages/CreatorView';
+import Analytics from './pages/Analytics';
+import PasswordRecovery from './pages/PasswordRecovery';
+import profView from './pages/profView';
 import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter} from 'react-router-dom';
@@ -14,7 +14,7 @@ function App() {
           <Routes>
             <Route path = "/" element={<CreatorView/>}/>
             <Route path = "/analytics" element={<Analytics/>}/>
-            <Route path = "/profile" element={<Card/>}/>
+            <Route path = "/profile" element={<profView/>}/>
             <Route path = "/reset" element = {<PasswordRecovery/>}/>
           </Routes>
         </BrowserRouter>
