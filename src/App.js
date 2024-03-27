@@ -16,6 +16,7 @@ function App() {
             <Route path = "/analytics" element={<Analytics/>}/>
             <Route path = "/profile" element={<profView/>}/>
             <Route path = "/reset" element = {<PasswordRecovery/>}/>
+            <Route path = "/explore" element = {<ExploreView/>}/>
           </Routes>
         </BrowserRouter>
       </div>
