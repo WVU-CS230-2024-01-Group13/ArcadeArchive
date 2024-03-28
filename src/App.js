@@ -2,23 +2,25 @@ import CreatorView from './pages/CreatorView';
 import Analytics from './pages/Analytics';
 import PasswordRecovery from './pages/PasswordRecovery';
 import profView from './pages/profView';
+import profSettingsPage from './pages/profSettings';
 import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter} from 'react-router-dom';
-import {Routes, Route} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-      <div className="App">
-        <BrowserRouter>
-          <Routes>
-            <Route path = "/" element={<CreatorView/>}/>
-            <Route path = "/analytics" element={<Analytics/>}/>
-            <Route path = "/profile" element={<profView/>}/>
-            <Route path = "/reset" element = {<PasswordRecovery/>}/>
-          </Routes>
-        </BrowserRouter>
-      </div>
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<CreatorView />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/profile" element={<profView />} />
+          <Route path="/reset" element={<PasswordRecovery />} />
+          <Route path="/profile/settings" element={<profSettingsPage />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
