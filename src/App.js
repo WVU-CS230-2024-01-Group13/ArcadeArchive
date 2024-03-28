@@ -16,8 +16,9 @@ function App() {
           <Route path="/" element={<CreatorView />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/profile" element={<profView />} />
-          <Route path="/reset" element={<PasswordRecovery />} />
           <Route path="/profile/settings" element={<profSettingsPage />} />
+          <Route path="/reset" element={<PasswordRecovery />} />
+          <Route path="/explore" element={<ExploreView />} />
         </Routes>
       </BrowserRouter>
     </div>
