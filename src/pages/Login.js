@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import './login.css';
 
 const Login = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleLoginClick = () => {
     setShowLoginForm(true);
@@ -18,6 +21,10 @@ const Login = () => {
   const handleBackLoginClick = () => {
     setShowLoginForm(false);
   };
+
+  const handleResetClick = () => {
+    navigate("/reset");
+  }
 
   const handleBackSignupClick = () => {
     setShowSignupForm(false);
@@ -43,6 +50,10 @@ const Login = () => {
         <br />
         <button className="button signup-button" id="signup-btn" onClick={handleSignupClick}>
           Create an Account
+        </button>
+        <br />
+        <button type = "button" className = "button reset-button" id = "reset-btn" onClick = {handleResetClick}>
+          Forgot Password?
         </button>
       </div>
       <form className={`login-form ${showLoginForm ? 'active' : ''}`}>
