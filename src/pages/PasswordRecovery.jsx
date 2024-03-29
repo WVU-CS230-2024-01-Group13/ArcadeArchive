@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 import {getAuth, sendPasswordResetEmail} from 'firebase/auth';
 import app from '../firebase.js';
+import './PasswordRecoveryStyles.css';
 const PasswordRecovery = () =>{
 
     const [email, setEmail] = useState('');
@@ -21,7 +22,7 @@ const PasswordRecovery = () =>{
         <button className = "button" type = "button" onClick = {sendReset}>
         Reset Password
         </button>
-
+        
     </div>
     </>
    );
