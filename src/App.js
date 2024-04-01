@@ -2,6 +2,7 @@ import CreatorView from './pages/CreatorView';
 import Analytics from './pages/Analytics';
 import PasswordRecovery from './pages/PasswordRecovery';
 import profView from './pages/profView';
+import profSettingsPage from './pages/profSettings';
 import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter} from 'react-router-dom';
