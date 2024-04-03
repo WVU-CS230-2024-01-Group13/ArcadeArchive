@@ -154,8 +154,8 @@
         window.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('login-btn').addEventListener('click', showLoginPage);
     document.getElementById('signup-btn').addEventListener('click', showCreateAccount);
-    document.getElementById('back-login-btn').addEventListener('click', back);
-    document.getElementById('back-signup-btn').addEventListener('click', back);
+    document.getElementById('back-login-btn').addEventListener('click', loginBack);
+    document.getElementById('back-signup-btn').addEventListener('click', signupBack);
     document.getElementById('create-account-bnt').addEventListener('click',register);
     document.getElementById('sumbit-btn').addEventListener('click',login)
   });
@@ -171,11 +171,18 @@
         document.getElementById('login-form').style.animation = 'slideIn 0.5s ease forwards'; // Apply slideIn animation
       };
 
-     function back() {
+     function signupBack() {
       document.getElementById('button-container').style.display = 'block';
       document.getElementById('signup-form').style.animation = 'slideOut 0.5s ease forwards'; // Apply slideOut animation
-      setTimeout(() => { document.getElementById('signup-form').style.display = 'none'; }, 500); // Hide form after animation
-    };
+      setTimeout(() => { document.getElementById('signup-form').style.display = 'none'; }, 500);
+     };
+      
+     function loginBack() {
+      document.getElementById('button-container').style.display = 'block';
+      document.getElementById('login-form').style.animation = 'slideOut 0.5s ease forwards'; // Apply slideOut animation
+      setTimeout(() => { document.getElementById('login-form').style.display = 'none'; }, 500); // Hide form after animation
+     };
+    
 
 
        const app=initializeApp(firebaseConfig)
