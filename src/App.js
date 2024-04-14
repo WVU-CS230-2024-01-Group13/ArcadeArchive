@@ -7,6 +7,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./content/PrivateRoute";
 import Navbar from "./content/Navbar";
+import profView from "./content/profView";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
                   <Routes>
                     <Route path='/signup' element={<Signup />}/>
                     <Route path='/login' element={<Login />}/>
-                    <Route exact path='/' element={<PrivateRoute Children={ExploreView} />} />
+                    <Route exact path='/' element={<PrivateRoute Children={profView} />} />
                   </Routes>
                 </div>
               </Container>
