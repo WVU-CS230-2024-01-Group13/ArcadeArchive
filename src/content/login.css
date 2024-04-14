@@ -3,10 +3,10 @@ body {
     margin: 0;
     padding: 0;
     background-color: rgba(255, 255, 255, 0.6);
-    background-image: url(video-game-collage-wallpaper-preview.jpg);
+    background-image: url('./../video-game-collage-wallpaper-preview.jpg');
     background-blend-mode: lighten;
   }
-  
+
   .container {
     position: relative;
     text-align: center;
