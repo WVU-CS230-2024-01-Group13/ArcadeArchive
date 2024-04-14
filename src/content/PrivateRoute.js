@@ -8,6 +8,6 @@ export default function PrivateRoute ({Children}) {
     let location = useLocation();
   
 
-      return currentUser ? < Children /> : <Navigate to="/profView" state={{ from: location }} />;
+      return currentUser ? < Children /> : <Navigate to="/Login" state={{ from: location }} />;
   
   }  

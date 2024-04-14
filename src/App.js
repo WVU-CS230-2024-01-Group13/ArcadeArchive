@@ -19,7 +19,7 @@ function App() {
                   <Routes>
                     <Route path='/signup' element={<Signup />}/>
                     <Route path='/login' element={<Login />}/>
-                    <Route exact path='/' element={<PrivateRoute Children={profView} />} />
+                    <Route exact path='/' element={<PrivateRoute Children={Login} />} />
                   </Routes>
                 </div>
               </Container>
