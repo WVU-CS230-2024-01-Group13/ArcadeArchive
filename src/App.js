@@ -2,13 +2,16 @@ import React from "react";
 import Signup from "./content/Signup";
 import ExploreView from "./content/ExploreView";
 import Login from "./content/Login";
-import message_component from "./content/messaging_component";
+import MessagingComponent from "./content/messaging_component.js";
 import { Container } from "react-bootstrap"
 import { AuthProvider } from "./contexts/AuthContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./content/PrivateRoute";
 import Navbar from "./content/Navbar";
-import profView from "./content/profView";
+import Friends from "./content/Friends.jsx"
+import CreatorView from "./content/CreatorView.js"
+import Analytics from "./content/Analytics.js"
+import profView from "./content/profView.js"
 
 function App() {
   return (
@@ -20,7 +23,12 @@ function App() {
                   <Routes>
                     <Route path='/signup' element={<Signup />}/>
                     <Route path='/login' element={<Login />}/>
-                    <Route path='/social' element={<message_component />}/>
+                    <Route path ='/explore' element = {<ExploreView/>}/>
+                    <Route path ='/analytics' element = {<Analytics/>}/>
+                    <Route path='/social' element={<MessagingComponent />}/>
+                    <Route path ='/friends' element = {<Friends/>}/>
+                    <Route path = '/create' element = {<CreatorView/>}/>
+                    <Route path = '/profile' element = {<profView/>}/>
                     <Route exact path='/' element={<PrivateRoute Children={Login} />} />
                   </Routes>
                 </div>
