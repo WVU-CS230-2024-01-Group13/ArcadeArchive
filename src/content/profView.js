@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 
-const profView = () => {
+const ProfView = () => {
 
   const navigate = useNavigate();
   return (
@@ -49,4 +49,4 @@ const profView = () => {
   );
 };
 
-export default profView;
+export default ProfView;

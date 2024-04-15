@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './messagingviewstyle.css';
+import firebase from 'firebase/compat/app';
 
 const MessagingComponent = () => {
   const [selectedUser, setSelectedUser] = useState('');
