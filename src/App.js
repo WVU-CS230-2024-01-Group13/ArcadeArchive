@@ -2,6 +2,7 @@ import React from "react";
 import Signup from "./content/Signup";
 import ExploreView from "./content/ExploreView";
 import Login from "./content/Login";
+import message_component from "./content/messaging_component";
 import { Container } from "react-bootstrap"
 import { AuthProvider } from "./contexts/AuthContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -19,6 +20,7 @@ function App() {
                   <Routes>
                     <Route path='/signup' element={<Signup />}/>
                     <Route path='/login' element={<Login />}/>
+                    <Route path='/social' element={<message_component />}/>
                     <Route exact path='/' element={<PrivateRoute Children={Login} />} />
                   </Routes>
                 </div>
