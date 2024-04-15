@@ -1,5 +1,7 @@
 import React from 'react';
+import './explore.css';
 
+const ExploreView = ()=>{
 return (
     <><head>
         <title>Arcade Archive Explore</title>
@@ -39,3 +41,6 @@ return (
                     </div>
                 </body></>
 );
+}
+
+export default ExploreView;
