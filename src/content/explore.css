@@ -1,0 +1,77 @@
+:root {
+    --theme-color: white;
+    --theme-dark-color: black;
+    --primary-font-color: white;
+    --link-font-color: black;
+ }
+ 
+ body {
+    font-family: 'Arial';
+    color: var(--primary-font-color);
+    background-color: white;
+    padding: 10px;
+ }
+ 
+ #grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 5px 5px;
+ }
+ 
+ #grid-headers {
+    grid-column: 1/3;
+    gap: 5px 5px;
+    text-align: center;
+ }
+ 
+ #top-game > h1 {
+    text-align: center;
+    color: var(--primary-font-color);
+    background-color: black;
+    border: 2px solid darkgrey;
+    padding: 10px;
+    border-radius: 20px;
+ }
+ 
+ #recent-game > h1 {
+    text-align: center;
+    color: var(--primary-font-color);
+    background-color: black;
+    border: 2px solid darkgrey;
+    padding: 10px;
+    border-radius: 20px;
+ }
+ 
+ #top-game {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 5px 5px;
+ }
+ 
+ #top-game > div {
+    text-align: center;
+    color: var(--primary-font-color);
+    background-color: black;
+    border: 2px solid darkgrey;
+    padding: 10px;
+    border-radius: 20px;
+ }
+ 
+ #recent-game {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 5px 5px;
+ }
+ 
+ #recent-game > div {
+    text-align: center;
+    color: var(--primary-font-color);
+    background-color: black;
+    border: 2px solid darkgrey;
+    padding: 10px;
+    border-radius: 20px;
+ }
+ 
+ input {
+    float: right;
+ }
