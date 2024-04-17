@@ -26,8 +26,18 @@ export default function ProfSettingsPage() {
                 bio
             });
 
+            // If there's a new profile picture, upload it to Firebase Storage
+            if (profPic) {
+                const storageRef = db.ref(`profile-pictures/${currentUser.uid}`);
+                await storageRef.put(profPic);
+                const url = await storageRef.getDownloadURL();
 
-
+                // Update profile picture URL in Firestore
+                await userRef.update({
+                    profPic: url
+                });
+                setProfilePicURL(url);
+            }
 
             alert('Changes saved successfully!');
         } catch (error) {
@@ -44,6 +54,10 @@ export default function ProfSettingsPage() {
                 <div>
                     <label>Display Name:</label>
                     <input type="text" value={currentUser.displayName} onChange={(e) => setDisplayName(e.target.value)} />
+                </div>
+                <div>
+                    <input type="file" id="profilePic" accept="image/*" onChange={(e) => setPic(e.target.files[0])} />
+                    {profilePicURL && <img src={profilePicURL} alt="Profile" />}
                 </div>
                 <div>
                     <label>Email:</label>
