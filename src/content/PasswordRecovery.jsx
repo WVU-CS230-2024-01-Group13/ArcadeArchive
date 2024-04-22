@@ -8,9 +8,16 @@ const PasswordRecovery = () =>{
 
     const [email, setEmail] = useState('');
     const auth = getAuth();
+    const navigate = useNavigate();
 
     const sendReset = async() => {
+        try{
         await sendPasswordResetEmail(auth, email);
+        navigate('/');
+        }
+        catch(error){
+            console.error(error);
+        }
     }
    
     return (

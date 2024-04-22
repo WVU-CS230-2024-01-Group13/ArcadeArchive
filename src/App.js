@@ -12,6 +12,7 @@ import Friends from "./content/Friends.jsx"
 import CreatorView from "./content/CreatorView.js"
 import Analytics from "./content/Analytics.js"
 import profView from "./content/profView.js"
+import PasswordRecovery from "./content/PasswordRecovery.jsx"
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
                     <Route path ='/friends' element = {<Friends/>}/>
                     <Route path = '/create' element = {<CreatorView/>}/>
                     <Route path = '/profile' element = {<profView/>}/>
+                    <Route path = '/reset' element = {<PasswordRecovery/>}/>
                     <Route exact path='/' element={<PrivateRoute Children={Login} />} />
                   </Routes>
                 </div>
