@@ -1,36 +1,71 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 import {
 getFirestore, 
 collection,
-add,
-deleteDoc
+doc,
+setDoc,
+deleteDoc,
+getDoc
 } 
 from 'firebase/firestore';
 import app from '../firebase.js';
+import { useAuth } from '../contexts/AuthContext.js';
 
 
 function Friends(){
+    //Contains reference to database, 'requests' collection, 'Friends' collection, and 'users' collection
     const db = getFirestore(app);
     const reqsRef = collection(db, 'requests');
+    const friendsRef = collection(db, 'Friends');
     const usersRef = collection(db, 'users');
 
+    const navigate = useNavigate();
+
+    //allows get/set of fromUser and toUser
     const [userId,setUserId] = useState('');
+    const [toUserId, setToUserId] = useState('');
+
+    const auth = useAuth();
+
+    //Should theoretically retrieve user information (doesn't currently work)
+    useEffect(() => {
+        const getCurrentUsername = async()=>{
+            if(auth.currentUser){
+                const userDoc = await usersRef.doc(auth.currentUser.uid).get();
+                if(userDoc.exists){
+                    const userData = userDoc.data();
+                    setUserId(userData.username);
+                }
+            }
+        }
+    }, [auth.currentUser]);
     
+    //Handles friend request (writes to the database)
     const sendRequest = async ()=>{
+        var reqData = {
+            fromUser: userId,
+            status: "added",
+            toUser: toUserId
+        };
+
+        var friendsData = {
+            friend1: toUserId
+        };
+        
         try{
-            await reqsRef.add({
-                fromUser: userId,
-                toUser: userId,
-                status: "pending"
-         });
-        } catch(error){
+            await setDoc(doc(reqsRef), reqData);
+            await setDoc(doc(friendsRef), friendsData);
+            navigate("/");
+        } 
+        catch(error){
             console.error(error);
         }
     }
 
+    //not currently working
     const deleteRequest = async(fromUser,toUser)=>{
         try{
             await reqsRef.deleteDoc("userOne");
@@ -42,8 +77,8 @@ function Friends(){
     return (
         <>
         <div className = "friendRequestPage">
-            <input type="text" placeholder = "Username" value = {userId} 
-            onChange = {(e)=>setUserId(e.target.value)} />
+            <input type="text" placeholder = "Username" value = {toUserId} 
+            onChange = {(e)=>setToUserId(e.target.value)} />
             <button className = "button" type = "button" onClick = {sendRequest}>
             Send Friend Request
             </button>

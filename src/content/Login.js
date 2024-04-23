@@ -2,6 +2,7 @@ import React,{ useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from "react-router-dom"
+import './login.css';
 
 export default function Login() {
     const emailRef = useRef()
@@ -46,11 +47,17 @@ export default function Login() {
                 
                     {error && <Alert variant='danger'>{error}</Alert>}
                 </Form>
+                <div className='w-100 text-center mt-2'>
+                    Don't have an account? <Link to="/signup">Sign Up</Link>
+                </div>
             </Card.Body>
         </Card>
 
         <div className='w-100 text-center mt-2'>
             Don't have an account? <Link to="/signup">Sign Up</Link>
+        </div>
+        <div className = 'w-100 text-center mt-2'>
+            Forgot Password? <Link to = "/reset">Reset</Link>
         </div>
     </>
   )

@@ -1,52 +1,20 @@
-import React from "react";
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
+import { useAuth } from '../contexts/AuthContext';
+import { Link } from 'react-router-dom';
+import { db } from '../firebase';
 
-const profView = () => {
+const ProfView = () => {
 
-  const navigate = useNavigate();
-  return (
-    <div class="containter-fluid text-center">
-      <div class="row row-cols-3 g-2">
-        <div class="col">
-          <div class="card">
-            <img href="profile.jpg" alt="Profile pic" />
-          </div>
-        </div>
-        <div class="card">
-          <div class="col">
-            <h2>Username</h2>
-            <p>Insert Bio Here</p>
-            <button class="btn btn-secondary" onClick={navigate("/profile/settings")}>Edit Profile</button>
+    const { currentUser } = useAuth();
 
-          </div>
+    return (
+        <div>
+            <img src={currentUser.profPic} alt="Profile" />
+            <h1>{currentUser.displayName ? currentUser.displayName : currentUser.email}'s Profile</h1>
+            <p>{currentUser.bio ? currentUser.bio : "Update Bio to Display Here"}</p>
+            <Link to='/profile/settings'><button class="btn btn-secondary" >Edit Profile</button ></Link>
         </div>
-        <div class="col">
-        </div>
-        <div class="col">
-          <div class="card">
-            <h5>Games Played</h5>
-            <ul>
-            //logic for firebase
-            </ul>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <h5>Your Games</h5>
-          //logic for firebase
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <h5>Friends List</h5>
-            <ul>
-            //logic for firebase
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 
-export default profView;
+export default ProfView;

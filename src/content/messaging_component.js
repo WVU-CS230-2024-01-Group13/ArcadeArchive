@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './messagingviewstyle.css';
+import firebase from 'firebase/compat/app';
 
 const MessagingComponent = () => {
   const [selectedUser, setSelectedUser] = useState('');
@@ -13,25 +14,25 @@ const MessagingComponent = () => {
     const history = getHistory(username);
     setChatHistory(history);
   };
-// CHAT class to house all operation needed to create a chat
+  // CHAT class to house all operation needed to create a chat
 
   // chat() is used to create the chat page
-    function chat(){
-      this.create_title()
-     this.create_chat()
-    };
+  function chat() {
+    this.create_title()
+    this.create_chat()
+  };
 
-  function send_message(message, username)  {
+  function send_message(message, username) {
     setSelectedUser(username);
     const history = getHistory(username);
     setChatHistory(history);
     var parent = this
     // if  there is no message
     // then return/don't send the message
-    if( message == null){
+    if (message == null) {
       return
     }
-    db.ref('chats/').once('value', function(message_object) {
+    db.ref('chats/').once('value', function (message_object) {
       // This index is mortant. It will help organize the chat in order
       var index = parseFloat(message_object.numChildren()) + 1
       db.ref('chats/' + `message_${index}`).set({
@@ -39,14 +40,14 @@ const MessagingComponent = () => {
         message: message,
         index: index
       })
-      // refreshs the chat globally 
-      .then(function(){
-        parent.refresh_chat()
-      })
+        // refreshs the chat globally 
+        .then(function () {
+          parent.refresh_chat()
+        })
     })
   };
 
-   getHistory = (username) => {
+  const getHistory = (username) => {
     const history = db.ref('chats/').doc(username);
     return history;
   };
@@ -116,8 +117,8 @@ const MessagingComponent = () => {
             id="send"
             type="submit"
             value="send"
-            
-            onClick={(event) => send_message(message,'username')}//username is a placeholder, right now there is no username in the database
+
+            onClick={(event) => send_message(message, 'username')}//username is a placeholder, right now there is no username in the database
           />
         </form>
       </div>

@@ -52,11 +52,12 @@ export default function Signup() {
                         <Form.Control type="username" ref={usernameRef} required />
                     </Form.Group>
 
+                    
                     <Form.Group id='password'>
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" ref={passwordRef} required />
                     </Form.Group>
-
+                    
                     <Form.Group id='password-confirm'>
                         <Form.Label>Password Confirmation</Form.Label>
                         <Form.Control type="password" ref={passwordConfirmRef} required />
@@ -66,13 +67,13 @@ export default function Signup() {
                 
                     {error && <Alert variant='danger'>{error}</Alert>}
                 </Form>
+                <div className='w-100 text-center mt-2'>
+                    Already have an account? <Link to="/login">Log In</Link>
+                </div>
             </Card.Body>
         </Card>
 
-        <div className='w-100 text-center mt-2'>
-            Already have an account? 
-            Don't have an account? <Link to="/login">Log In</Link>
-        </div>
+        
     </>
   )
 }
