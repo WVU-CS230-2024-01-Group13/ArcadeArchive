@@ -47,9 +47,6 @@ export default function Login() {
                 
                     {error && <Alert variant='danger'>{error}</Alert>}
                 </Form>
-                <div className='w-100 text-center mt-2'>
-                    Don't have an account? <Link to="/signup">Sign Up</Link>
-                </div>
             </Card.Body>
         </Card>
 
