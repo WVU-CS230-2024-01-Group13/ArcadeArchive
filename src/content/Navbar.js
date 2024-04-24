@@ -28,6 +28,7 @@ function Navbar() {
       <Link to="/analytics" activeClassName="active">Analytics</Link>
       <Link to="/social" activeClassName="active">Social</Link>
       <Link to="/profile" activeClassName="active">Profile</Link>
+      <Link to="/friends" activeClassName = "active">Friends</Link>
       <Link to="/" activeClassName="active">Logout</Link>
     </div>
     <div class="greeting">Hello <span id="username">User</span>.</div>

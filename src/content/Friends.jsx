@@ -1,51 +1,37 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
-import {
-getFirestore, 
-collection,
-add,
-deleteDoc
-} 
-from 'firebase/firestore';
-import app from '../firebase.js';
+import {follow, unfollow} from '../contexts/dbContext'
+import { useAuth } from '../contexts/AuthContext.js';
 
 
 function Friends(){
-    const db = getFirestore(app);
-    const reqsRef = collection(db, 'requests');
-    const usersRef = collection(db, 'users');
+    const navigate = useNavigate();
 
-    const [userId,setUserId] = useState('');
+    const [toUserId, setToUserId] = useState('');
+    const auth = useAuth();
+
+    const handleFollow = () => {
+        follow(toUserId);
+    };
+
+    const handleUnfollow = () => {
+        unfollow(toUserId);
+    };
     
-    const sendRequest = async ()=>{
-        try{
-            await reqsRef.add({
-                fromUser: userId,
-                toUser: userId,
-                status: "pending"
-         });
-        } catch(error){
-            console.error(error);
-        }
-    }
-
-    const deleteRequest = async(fromUser,toUser)=>{
-        try{
-            await reqsRef.deleteDoc("userOne");
-        }catch(error){
-        console.error(error);
-        }
-    }
+    //HTML page
 
     return (
         <>
         <div className = "friendRequestPage">
-            <input type="text" placeholder = "Username" value = {userId} 
-            onChange = {(e)=>setUserId(e.target.value)} />
-            <button className = "button" type = "button" onClick = {sendRequest}>
-            Send Friend Request
+            <input type="text" placeholder = "Username" value = {toUserId} 
+            onChange = {(e)=>setToUserId(e.target.value)} />
+            <button className = "button" type = "button" onClick = {handleFollow}>
+                Follow
+            </button>
+            <button className = "button" type = "button" onClick = {handleUnfollow}>
+                Unfollow
             </button>
     
         </div>
