@@ -33,6 +33,7 @@ body {
     transition: background-color 0.3s ease;
     background-color: #f0f0f0;
     color: #000;
+    border: none;
   }
   
   .login-button,
