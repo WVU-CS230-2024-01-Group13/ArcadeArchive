@@ -4,12 +4,7 @@ const auth = getAuth();
 const user = auth.currentUser;
 
 if (user !== null) {
-    const displayName = user.displayName;
-    const email = user.email;
-    const photoURL = user.photoURL;
-    //are we doing email verification?
-    const emailVerified = user.emailVerified;
-    const uid = user.uid;
+    
 } else {
   // No user is signed in.
   //Prompt sign in? Should they even be able to get to this point?

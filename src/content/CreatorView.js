@@ -101,7 +101,6 @@ const styles = {
     padding: '12px',
     marginBottom: '70px',
     width: '100%',
-    padding: '8px',
     boxSizing: 'border-box',
     fontSize: '18px',
     fontFamily: 'Arial',

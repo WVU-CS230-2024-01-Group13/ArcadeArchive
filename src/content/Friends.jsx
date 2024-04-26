@@ -7,10 +7,10 @@ import { useAuth } from '../contexts/AuthContext.js';
 
 
 function Friends(){
-    const navigate = useNavigate();
+    useNavigate();
 
     const [toUserId, setToUserId] = useState('');
-    const auth = useAuth();
+    useAuth();
 
     const handleFollow = () => {
         follow(toUserId);
