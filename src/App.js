@@ -13,7 +13,6 @@ import CreatorView from "./content/CreatorView.js"
 import Analytics from "./content/Analytics.jsx"
 import ProfView from "./content/profView.js";
 import ProfSettingsPage from "./content/profSettings.js";
-import profView from "./content/profView.js"
 import PasswordRecovery from "./content/PasswordRecovery.jsx"
 
 function App() {

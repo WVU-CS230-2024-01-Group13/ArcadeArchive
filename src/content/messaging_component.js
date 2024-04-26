@@ -20,7 +20,7 @@ const MessagingComponent = () => {
   function chat() {
     this.create_title()
     this.create_chat()
-  };
+  }
 
   function send_message(message, username) {
     setSelectedUser(username);
@@ -45,11 +45,10 @@ const MessagingComponent = () => {
           parent.refresh_chat()
         })
     })
-  };
+  }
 
   const getHistory = (username) => {
-    const history = db.ref('chats/').doc(username);
-    return history;
+    return db.ref('chats/').doc(username);
   };
 
   return (

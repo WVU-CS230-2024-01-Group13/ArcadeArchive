@@ -1,7 +1,6 @@
 //import React, { useContext, useState, useEffect } from 'react'
-import { db } from '../firebase';
+import { db, auth } from '../firebase';
 import { ref, set, remove, get} from 'firebase/database'; 
-import { auth } from '../firebase'
 
 async function isUsernameTaken(username) {
     const usersRef = ref(db, 'users');

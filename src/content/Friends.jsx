@@ -1,7 +1,6 @@
-import React from 'react';
-import {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import {follow, unfollow} from '../contexts/dbContext'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { follow, unfollow } from '../contexts/dbContext'
 import { useAuth } from '../contexts/AuthContext.js';
 
 
