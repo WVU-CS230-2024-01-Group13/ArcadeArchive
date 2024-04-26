@@ -1,0 +1,6 @@
+projectKey=group13key
+serverUrl=http://localhost:9000
+serverVersion=8.8.0.42792
+dashboardUrl=http://localhost:9000/dashboard?id=group13key
+ceTaskId=AY8YPV3XGhDCbNQm0Zvn
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AY8YPV3XGhDCbNQm0Zvn

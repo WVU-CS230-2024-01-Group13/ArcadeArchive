@@ -10,7 +10,7 @@ import PrivateRoute from "./content/PrivateRoute";
 import Navbar from "./content/Navbar";
 import Friends from "./content/Friends.jsx"
 import CreatorView from "./content/CreatorView.js"
-import Analytics from "./content/Analytics.js"
+import Analytics from "./content/Analytics.jsx"
 import ProfView from "./content/profView.js";
 import ProfSettingsPage from "./content/profSettings.js";
 import profView from "./content/profView.js"
@@ -24,14 +24,14 @@ function App() {
         <Container className='d-flex align-items-center justify-content-center' style={{ minHeight: "100vh" }}>
           <div className='w-100' style={{ maxWidth: "400px" }}>
             <Routes>
-              <Route path='/signup' element={<Signup />} />
+              <Route path='/' element={<Signup />} />
               <Route path='/login' element={<Login />} />
               
               <Route element={<PrivateRoute />}>
                 <Route path='/' element={<ExploreView />} />
                 <Route path='/social' element={<MessagingComponent />} />
                 <Route path='/friends' element={<Friends />} />
-                
+
                 /*Need to redirect user to explore view if not a creator account on /create and /analytics */
                 <Route path='/create' element={<CreatorView />} />
                 <Route path='/analytics' element={<Analytics />} />

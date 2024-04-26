@@ -1,6 +1,6 @@
 //import React, { useContext, useState, useEffect } from 'react'
 import { db } from '../firebase';
-import { ref, set, get } from 'firebase/database'; 
+import { ref, set, remove, get} from 'firebase/database'; 
 import { auth } from '../firebase'
 
 async function isUsernameTaken(username) {
@@ -28,6 +28,8 @@ async function isUsernameTaken(username) {
                 email: email,
                 username: username,
                 last_login: Date.now(),
+                following: "",
+                followers: ""
             };
             const usersRef = ref(db, 'users/' + user.uid);
              set(usersRef, user_data); 
@@ -38,4 +40,48 @@ async function isUsernameTaken(username) {
   
    
 
+}
+
+export async function follow(toUsername) {
+    try {
+        const sender = auth.currentUser;
+        const usersRef = ref(db, 'users');
+
+        const snapshot = await get(usersRef);
+        snapshot.forEach((childSnapshot) => {
+            const userData = childSnapshot.val();
+            if (userData.username === toUsername) {
+                const userId = childSnapshot.key;
+                console.log("User ID:", userId);
+                const followingRef = ref(db, 'users/' + sender.uid + '/following/' + userId);
+                const followersRef = ref(db, 'users/' + userId + '/followers/' + sender.uid);
+                set(followingRef, true);
+                set(followersRef, true);
+            }
+        });
+    } catch (error) {
+        console.error("Error following user:", error);
+    }
+}
+
+export async function unfollow(toUsername) {
+    try {
+        const sender = auth.currentUser;
+        const usersRef = ref(db, 'users');
+
+        const snapshot = await get(usersRef);
+        snapshot.forEach((childSnapshot) => {
+            const userData = childSnapshot.val();
+            if (userData.username === toUsername) {
+                const userId = childSnapshot.key;
+                console.log("User ID:", userId);
+                const followingRef = ref(db, 'users/' + sender.uid + '/following/' + userId);
+                const followersRef = ref(db, 'users/' + userId + '/followers/' + sender.uid);
+                remove(followingRef);
+                remove(followersRef);
+            }
+        });
+    } catch (error) {
+        console.error("Error unfollowing user:", error);
+    }
 }

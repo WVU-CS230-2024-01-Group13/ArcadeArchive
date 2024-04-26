@@ -2,6 +2,7 @@ import firebase from 'firebase/compat/app';
 import { getStorage } from "firebase/storage";
 import "firebase/compat/auth";
 import { getDatabase } from 'firebase/database';
+import { getMessaging } from 'firebase/messaging';
 
 const app = firebase.initializeApp({
   apiKey: "AIzaSyA2R8066aBNkqCYljLoVPYzq1HEhn-RvyE",
@@ -17,4 +18,5 @@ const app = firebase.initializeApp({
 export const auth = app.auth()
 export const storage = getStorage(app);
 export const db= getDatabase(app)
+export const messaging = getMessaging(app);
 export default app
