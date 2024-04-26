@@ -9,9 +9,10 @@ function Navbar() {
   // Check if the current route is the welcome view
   const isLoginView = location.pathname === '/login';
   const isSignupView = location.pathname === '/signup';
+  const isLandingView = location.pathname === '/';
 
   // If it's the welcome view, don't render the navbar
-  if (isLoginView || isSignupView) {
+  if (isLoginView || isSignupView || isLandingView) {
     return null;
   }
 
