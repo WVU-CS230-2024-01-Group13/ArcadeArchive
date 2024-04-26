@@ -24,11 +24,12 @@ function App() {
         <Container className='d-flex align-items-center justify-content-center' style={{ minHeight: "100vh" }}>
           <div className='w-100' style={{ maxWidth: "400px" }}>
             <Routes>
-              <Route path='/' element={<Signup />} />
+              <Route path='/signup' element={<Signup />} />
+              <Route path = '/' element = {<Signup />} />
               <Route path='/login' element={<Login />} />
               
               <Route element={<PrivateRoute />}>
-                <Route path='/' element={<ExploreView />} />
+                <Route path='/explore' element={<ExploreView />} />
                 <Route path='/social' element={<MessagingComponent />} />
                 <Route path='/friends' element={<Friends />} />
 
