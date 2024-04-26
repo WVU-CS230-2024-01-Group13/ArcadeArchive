@@ -1,23 +1,24 @@
 import React from 'react';
-import {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {follow, unfollow} from '../contexts/dbContext'
 import { useAuth } from '../contexts/AuthContext.js';
 
 
 function Friends(){
-    useNavigate();
+    const navigate = useNavigate();
 
     const [toUserId, setToUserId] = useState('');
     useAuth();
 
     const handleFollow = () => {
         follow(toUserId);
+        navigate("/explore");
     };
 
     const handleUnfollow = () => {
         unfollow(toUserId);
+        navigate("/explore");
     };
     
     //HTML page

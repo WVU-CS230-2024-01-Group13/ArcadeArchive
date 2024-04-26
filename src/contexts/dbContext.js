@@ -32,10 +32,10 @@ export async function follow(toUsername) {
         const sender = auth.currentUser;
         const usersRef = ref(db, 'users');
 
-        const snapshot = await get(usersRef); // Get all users
+        const snapshot = await get(usersRef);
         snapshot.forEach((childSnapshot) => {
             const userData = childSnapshot.val();
-            if (userData.username === toUsername) { // Check if username matches
+            if (userData.username === toUsername) {
                 const userId = childSnapshot.key;
                 console.log("User ID:", userId);
                 const followingRef = ref(db, 'users/' + sender.uid + '/following/' + userId);
@@ -54,10 +54,10 @@ export async function unfollow(toUsername) {
         const sender = auth.currentUser;
         const usersRef = ref(db, 'users');
 
-        const snapshot = await get(usersRef); // Get all users
+        const snapshot = await get(usersRef);
         snapshot.forEach((childSnapshot) => {
             const userData = childSnapshot.val();
-            if (userData.username === toUsername) { // Check if username matches
+            if (userData.username === toUsername) {
                 const userId = childSnapshot.key;
                 console.log("User ID:", userId);
                 const followingRef = ref(db, 'users/' + sender.uid + '/following/' + userId);

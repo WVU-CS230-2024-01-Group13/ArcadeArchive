@@ -10,7 +10,7 @@ import PrivateRoute from "./content/PrivateRoute";
 import Navbar from "./content/Navbar";
 import Friends from "./content/Friends.jsx"
 import CreatorView from "./content/CreatorView.js"
-import Analytics from "./content/Analytics.js"
+import Analytics from "./content/Analytics.jsx"
 import ProfView from "./content/profView.js";
 import ProfSettingsPage from "./content/profSettings.js";
 import profView from "./content/profView.js"
@@ -24,11 +24,11 @@ function App() {
         <Container className='d-flex align-items-center justify-content-center' style={{ minHeight: "100vh" }}>
           <div className='w-100' style={{ maxWidth: "400px" }}>
             <Routes>
-              <Route path='/signup' element={<Signup />} />
+              <Route path='/' element={<Signup />} />
               <Route path='/login' element={<Login />} />
               
-              <Route exact path='/' element={<PrivateRoute />}>
-                <Route path='/' element={<ExploreView />} />
+              <Route exact path='/explore' element={<PrivateRoute />}>
+                <Route path='/explore' element={<ExploreView />} />
               </Route>
 
               <Route exact path='/social' element={<PrivateRoute />}>

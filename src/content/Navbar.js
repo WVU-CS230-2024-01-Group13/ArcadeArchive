@@ -23,6 +23,7 @@ function Navbar() {
     </Link>
 
     <div class="navbar-menu">
+      <Link to = "/notifications" activeClassName="active">Notifications</Link>
       <Link to="/explore" activeClassName="active">Explore</Link>
       <Link to="/create" activeClassName="active">Create</Link>
       <Link to="/analytics" activeClassName="active">Analytics</Link>
