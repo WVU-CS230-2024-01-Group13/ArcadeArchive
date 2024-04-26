@@ -3,13 +3,6 @@ import { getAuth, updateEmail, sendEmailVerification, updatePassword, deleteUser
 const auth = getAuth();
 const user = auth.currentUser;
 
-if (user !== null) {
-    
-} else {
-  // No user is signed in.
-  //Prompt sign in? Should they even be able to get to this point?
-}
-
 const newEmail = //read in email;
 //email input const
 updateEmail(auth.currentUser, newEmail).then(() => {
