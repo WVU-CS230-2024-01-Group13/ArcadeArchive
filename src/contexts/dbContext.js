@@ -1,6 +1,6 @@
 //import React, { useContext, useState, useEffect } from 'react'
 import { db } from '../firebase';
-import { ref, set, remove, get} from 'firebase/database'; 
+import { getDatabase, push, ref, set, remove, get} from 'firebase/database'; 
 import { auth } from '../firebase'
 
 async function isUsernameTaken(username) {
@@ -85,3 +85,23 @@ export async function unfollow(toUsername) {
         console.error("Error unfollowing user:", error);
     }
 }
+
+export async function uploadGame(title, description, thumbnailUrl, pythonUrl) {
+    try {
+      const gamesRef = ref(db, 'games');
+      const newGameRef = push(gamesRef); // Generate a unique game ID
+      const gameId = newGameRef.key;
+    
+      const gameData = {
+        title: title,
+        description: description,
+        thumbnailUrl: thumbnailUrl,
+        pythonUrl: pythonUrl
+      };
+  
+      set(newGameRef, gameData);
+      console.log('Game data uploaded successfully');
+    } catch (error) {
+      console.error('Error uploading game data:', error);
+    }
+  }

@@ -15,6 +15,7 @@ import ProfView from "./content/profView.js";
 import ProfSettingsPage from "./content/profSettings.js";
 import profView from "./content/profView.js"
 import PasswordRecovery from "./content/PasswordRecovery.jsx"
+import GameDetailsView from "./content/GameDetailsView.js";
 
 function App() {
   return (
@@ -24,11 +25,12 @@ function App() {
         <Container className='d-flex align-items-center justify-content-center' style={{ minHeight: "100vh" }}>
           <div className='w-100' style={{ maxWidth: "400px" }}>
             <Routes>
-              <Route path='/' element={<Signup />} />
+              <Route path='/signup' element={<Signup />} />
               <Route path='/login' element={<Login />} />
               
               <Route element={<PrivateRoute />}>
                 <Route path='/' element={<ExploreView />} />
+                <Route path='/game/:id' element={<GameDetailsView />} />
                 <Route path='/social' element={<MessagingComponent />} />
                 <Route path='/friends' element={<Friends />} />
 
