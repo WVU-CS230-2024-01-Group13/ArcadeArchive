@@ -28,7 +28,7 @@ export default function Signup() {
             await signup(emailRef.current.value, passwordRef.current.value ) //puts user info into auth
             dbSignup(emailRef.current.value, usernameRef.current.value) // puts user info into realtime database
  // puts user info into realtime database
-            navigate("/")  // navigates to the homepage
+            navigate("/explore")  // navigates to the homepage
         } catch(err) {
             console.log(err);
             setError('Failed to create an account')

@@ -1,10 +1,20 @@
-import React, {useState} from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button } from "react-bootstrap"
-import { useAuth } from '../contexts/AuthContext'
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './styles.css';
+function Navbar() {
 
-export default function Navbar() { 
+  const location = useLocation();
+
+  // Check if the current route is the welcome view
+  const isLoginView = location.pathname === '/login';
+  const isSignupView = location.pathname === '/signup';
+  const isLandingView = location.pathname ==='/';
+
+  // If it's the welcome view, don't render the navbar
+  if (isLoginView || isSignupView || isLandingView) {
+    return null;
+  }
+
   return (
     <div class="navbar">
     <Link to="/" class="navbar-brand">
@@ -13,14 +23,17 @@ export default function Navbar() {
     </Link>
 
     <div class="navbar-menu">
-      <Link to="/" activeClassName="active">Explore</Link>
+      <Link to="/explore" activeClassName="active">Explore</Link>
       <Link to="/create" activeClassName="active">Create</Link>
       <Link to="/analytics" activeClassName="active">Analytics</Link>
       <Link to="/social" activeClassName="active">Social</Link>
       <Link to="/profile" activeClassName="active">Profile</Link>
       <Link to="/friends" activeClassName = "active">Friends</Link>
+      <Link to="/" activeClassName="active">Logout</Link>
     </div>
     <div class="greeting">Hello <span id="username">User</span>.</div>
   </div>
   );
 }
+
+export default Navbar;
