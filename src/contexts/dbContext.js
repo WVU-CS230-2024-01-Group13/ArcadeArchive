@@ -1,5 +1,5 @@
 //import React, { useContext, useState, useEffect } from 'react'
-import { getDatabase, push, ref, set, remove, get} from 'firebase/database';
+import { push, ref, set, remove, get} from 'firebase/database';
 import { db, auth } from '../firebase';
 
 async function isUsernameTaken(username) {
@@ -89,7 +89,6 @@ export async function uploadGame(title, description, thumbnailUrl, pythonUrl) {
     try {
       const gamesRef = ref(db, 'games');
       const newGameRef = push(gamesRef); // Generate a unique game ID
-      const gameId = newGameRef.key;
     
       const gameData = {
         title: title,
