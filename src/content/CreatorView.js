@@ -4,6 +4,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "./../firebase";
 import { v4 } from "uuid";
 import { uploadGame } from "./../contexts/dbContext"; // Import the function to upload game data
+import { useAuth } from '../contexts/AuthContext';
 
 export default function CreatorView() {
   const [imageUpload, setImageUpload] = useState(null);
@@ -11,6 +12,8 @@ export default function CreatorView() {
   const [description, setDescription] = useState("");
   const [pythonFile, setPythonFile] = useState(null);
   const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
+  const { currentUser } = useAuth()
 
   const allowedImageTypes = ["image/png", "image/jpeg", "image/gif"];
   const pythonAllowedExtension = ".py";
@@ -40,16 +43,17 @@ export default function CreatorView() {
       uploadBytes(thumbnailRef, imageUpload),
       uploadBytes(pythonRef, pythonFile)
     ]).then(([thumbnailSnapshot, pythonSnapshot]) => {
-       Promise.all([
+      Promise.all([
         getDownloadURL(thumbnailSnapshot.ref),
         getDownloadURL(pythonSnapshot.ref)
       ]).then(([thumbnailUrl, pythonUrl]) => {
-        uploadGame(title, description, thumbnailUrl, pythonUrl);
+        uploadGame(title, description, thumbnailUrl, pythonUrl, currentUser.uid); // Pass the uploader's ID
         setError(null);
         setTitle("");
         setDescription("");
         setImageUpload(null);
         setPythonFile(null);
+        setSuccessMessage("Game uploaded successfully!");
       }).catch(error => {
         setError("Failed to get download URLs for uploaded files. Please try again.");
         console.error("Error getting download URLs:", error);
@@ -112,6 +116,7 @@ export default function CreatorView() {
 
         <Button className="form-control-file border p-2" onClick={handleImageUpload}> Upload Game</Button>
         {error && <Alert variant='danger'>{error}</Alert>}
+        {successMessage && <Alert variant="success">{successMessage}</Alert>}
       </Form>
     </div>
   );

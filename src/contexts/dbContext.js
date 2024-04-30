@@ -85,7 +85,7 @@ export async function unfollow(toUsername) {
     }
 }
 
-export async function uploadGame(title, description, thumbnailUrl, pythonUrl) {
+export async function uploadGame(title, description, thumbnailUrl, pythonUrl, uploaderId) {
     try {
       const gamesRef = ref(db, 'games');
       const newGameRef = push(gamesRef); // Generate a unique game ID
@@ -94,7 +94,9 @@ export async function uploadGame(title, description, thumbnailUrl, pythonUrl) {
         title: title,
         description: description,
         thumbnailUrl: thumbnailUrl,
-        pythonUrl: pythonUrl
+        pythonUrl: pythonUrl,
+        uploaderId: uploaderId, // Add the uploader's ID to the game data
+        downloadsCount: 0
       };
   
       set(newGameRef, gameData);
