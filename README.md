@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# CS Group 13 - Arcade Archive 
+Our project is a website that allows users to browse and play games. It has adjustable account information and social chat rooms for better user enjoyment. 
+# Motivation 
+The motivation behind this project is to provide a welcoming community to those users who want to create and play games on our site
+# Build Status 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Code Style
 
-## Available Scripts
+# Screenshots
+![ArcadeArchiveLogo](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/5053f8c3-5203-4055-a0d0-da329b47dbee)
 
-In the project directory, you can run:
+# Tech
 
-### `npm start`
+# Features
+Our Website includes features like account creation, password recovery, global chat, profile customization, the ability to download and upload game files, and the ability to see the analytics of the games that you posted 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Code Examples
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Installation 
+Installation needed: React, Firebase, Bootstrap 
 
-### `npm test`
+# API
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Tests
 
-### `npm run build`
+# How to Use?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Contribute 
+We would like to add the ability to private message users and ability to block users
+# Credits
+https://rhymbil.netlify.app/
+The source code and video, provided in the link above, helped our group understand certain features and some basic with Firebase
