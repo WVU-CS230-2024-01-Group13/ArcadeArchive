@@ -10,7 +10,7 @@ export default function Signup() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
-    const usernameRef=useRef()
+    const usernameRef = useRef()
     const { signup } = useAuth()
     
     const [error, setError] = useState("")
@@ -27,8 +27,9 @@ export default function Signup() {
             setError("")
             setLoading(true)
             await signup(emailRef.current.value, passwordRef.current.value ) //puts user info into auth
-             dbSignup(emailRef.current.value, usernameRef.current.value) // puts user info into realtime database
-            navigate("/")  // navigates to the homepage
+            dbSignup(emailRef.current.value, usernameRef.current.value) // puts user info into realtime database
+ // puts user info into realtime database
+            navigate("/explore")  // navigates to the homepage
         } catch(err) {
             console.log(err);
             setError('Failed to create an account')
