@@ -73,14 +73,15 @@ export default function GameDetailsView() {
           {error && <Alert variant="danger">{error}</Alert>}
           {game && (
             <Card>
-              <Card.Body>
+              <Card.Body style={{backgroundColor: "lightgray", borderRadius: "10px"}}>
                 <Card.Title>{game.title}</Card.Title>
                 <Card.Text>{game.description}</Card.Text>
                 {pythonUrl && (
-                  <Button onClick={trackDownload} variant="primary" href={pythonUrl} download={`${game.title}.py`}>
+                  <Button onClick={trackDownload} variant="primary" href={pythonUrl} download={`${game.title}.py`} style={{marginBottom: "40px"}}>
                     Download Python File
                   </Button>
                 )}
+
                 {currentUser && currentUser.uid === game.uploaderId && ( // Display delete button only if the user is the uploader
                   <Button variant="danger" onClick={handleDeleteGame} className="ml-2">
                     Delete Game
