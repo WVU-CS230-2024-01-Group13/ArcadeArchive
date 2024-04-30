@@ -1,5 +1,5 @@
 # CS Group 13 - Arcade Archive 
-Arcade Archive is an innovative web platform designed to cater to gamers worldwide with a comprehensive suite of features. It offers account management, including account creation, password recovery, and extensive profile customization. Users cna engage in real-time global chat, fostering connections and friendships. The platform also enables game sharing through download and upload functionalities, encouraging collaboration and creativity.
+Arcade Archive is an innovative web platform designed to cater to gamers worldwide with a comprehensive suite of features. It offers account management, including account creation, password recovery, and extensive profile customization. Users can engage in real-time global chat, fostering connections and friendships. The platform also enables game sharing through download and upload functionalities, encouraging collaboration and creativity.
 Additionally, Arcade Archive provides users with detailed analytics to track game performance and community engagement. It represents more than just a gaming platform - it's a thriving ecosystem where users can discover, connect, and thrive. With its commitment to user satisfaction, Arcade Archive sets the standard for the next generation of gaming communities.
 # Motivation 
 The driving force behind this project is the desire to cultivate a supportive and inclusive space for individuals keen on game creation and exploration. We aim to build a platform where users can freely unleash their creativity, discover new experiences, and forge meaningful connections with fellow gamers. By fostering a sense of belonging and camaraderie, we aspire to make Arcade Archive not just a destination for gaming, but a vibrant community where users can find inspiration, encouragement, and endless opportunities for growth and enjoyment.
@@ -9,8 +9,7 @@ The driving force behind this project is the desire to cultivate a supportive an
 
 # Screenshots/Examples
 ![ArcadeArchiveLogo](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/5053f8c3-5203-4055-a0d0-da329b47dbee)
-
-Our logo
+This is a screenshot of our designed logo.
 
 ![image](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/3f72dc00-dd90-4a1b-a2c0-9362f9b05ba7)
 This screenshot shows our explore page with featured games and search bar.
