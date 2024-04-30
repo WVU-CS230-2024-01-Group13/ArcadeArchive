@@ -2,7 +2,6 @@ import React from "react";
 import Signup from "./content/Signup";
 import ExploreView from "./content/ExploreView";
 import Login from "./content/Login";
-import MessagingComponent from "./content/messaging_component.js";
 import { Container } from "react-bootstrap"
 import { AuthProvider } from "./contexts/AuthContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -15,6 +14,7 @@ import ProfView from "./content/profView.js";
 import ProfSettingsPage from "./content/profSettings.js";
 import PasswordRecovery from "./content/PasswordRecovery.jsx"
 import GameDetailsView from "./content/GameDetailsView.js";
+import Chat from "./content/messaging_component.js";
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
               <Route element={<PrivateRoute />}>
                 <Route path='/' element={<ExploreView />} />
                 <Route path='/game/:id' element={<GameDetailsView />} />
-                <Route path='/social' element={<MessagingComponent />} />
+                <Route path='/social' element={<Chat />} />
                 <Route path='/friends' element={<Friends />} />
 
                 /*Need to redirect user to explore view if not a creator account on /create and /analytics */

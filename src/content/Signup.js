@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { dbSignup } from '../contexts/dbContext'
 
 
+
 export default function Signup() {
     const emailRef = useRef()
     const passwordRef = useRef()
