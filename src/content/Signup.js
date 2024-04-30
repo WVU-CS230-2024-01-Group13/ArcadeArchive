@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { dbSignup } from '../contexts/dbContext'
 
 
+
 export default function Signup() {
     const emailRef = useRef()
     const passwordRef = useRef()
@@ -18,7 +19,7 @@ export default function Signup() {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        
+        //Make sure passwords match
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
             return setError('Passwords do not match')
         }
@@ -26,7 +27,7 @@ export default function Signup() {
             setError("")
             setLoading(true)
             await signup(emailRef.current.value, passwordRef.current.value ) //puts user info into auth
-            await dbSignup(emailRef.current.value, usernameRef.current.value) // puts user info into realtime database
+             dbSignup(emailRef.current.value, usernameRef.current.value) // puts user info into realtime database
             navigate("/")  // navigates to the homepage
         } catch(err) {
             console.log(err);
