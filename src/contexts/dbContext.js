@@ -1,5 +1,5 @@
 //import React, { useContext, useState, useEffect } from 'react'
-import { push, ref, set, remove, get} from 'firebase/database';
+import { push, ref, set, remove, get, update} from 'firebase/database';
 import { db, auth } from '../firebase';
 
 async function isUsernameTaken(username) {
@@ -142,3 +142,14 @@ export async function uploadGame(title, description, thumbnailUrl, pythonUrl, up
       console.error('Error uploading game data:', error);
     }
   }
+
+  export async function updateUserProfile(uid, updates) {
+    try {
+        const userRef = ref(db, `users/${uid}`);
+        await update(userRef, updates);
+        console.log('User profile updated successfully');
+    } catch (error) {
+        console.error('Error updating user profile:', error);
+        throw error;
+    }
+}

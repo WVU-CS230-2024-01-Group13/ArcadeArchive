@@ -1,75 +1,83 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import 'firebase/firestore';
-import 'firebase/storage';
 import { db } from '../firebase';
+import { updateUserProfile } from '../contexts/dbContext';
+import { ref, get } from 'firebase/database';
 
 export default function ProfSettingsPage() {
     const { currentUser } = useAuth();
+    const [userData, setUserData] = useState(null);
+    const [newUsername, setNewUsername] = useState('');
+    const [newBio, setNewBio] = useState('');
+    const [newEmail, setNewEmail] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
-    const [displayName, setDisplayName] = useState(currentUser.displayName);
-    const [email, setEmail] = useState(currentUser.email);
-    const [bio, setBio] = useState(currentUser.bio);
-    const [profPic, setPic] = useState('');
-    const [profilePicURL, setProfilePicURL] = useState(currentUser.profPic);
-    const Navigate = useNavigate;
-
-    const handleSaveChanges = async () => {
-        try {
-            const userRef = db.collection('users').doc(currentUser.uid);
-
-            // Update display name and bio
-            await userRef({
-                displayName,
-                email,
-                bio
-            });
-
-            // If there's a new profile picture, upload it to Firebase Storage
-            if (profPic) {
-                const storageRef = db.ref(`profile-pictures/${currentUser.uid}`);
-                await storageRef.put(profPic);
-                const url = await storageRef.getDownloadURL();
-
-                // Update profile picture URL in Firestore
-                await userRef.update({
-                    profPic: url
+    useEffect(() => {
+        if (currentUser) {
+            const userRef = ref(db, `users/${currentUser.uid}`);
+            get(userRef)
+                .then(snapshot => {
+                    if (snapshot.exists()) {
+                        setUserData(snapshot.val());
+                    } else {
+                        console.log('No such document!');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error getting document:', error);
                 });
-                setProfilePicURL(url);
-            }
+        }
+    }, [currentUser]);
 
-            alert('Changes saved successfully!');
+    const handleUpdateUsername = async () => {
+        try {
+            await updateUserProfile(currentUser.uid, { username: newUsername });
+            setUserData({ ...userData, username: newUsername });
+            setNewUsername('');
         } catch (error) {
-            console.error('Error updating profile:', error);
-            alert('Failed to save changes. Please try again.');
+            setError('Error updating username: ' + error.message);
         }
     };
 
+    const handleUpdateBio = async () => {
+        try {
+            await updateUserProfile(currentUser.uid, { bio: newBio });
+            setUserData({ ...userData, bio: newBio });
+            setNewBio('');
+        } catch (error) {
+            setError('Error updating bio: ' + error.message);
+        }
+    };
+
+    const handleUpdateEmail = async () => {
+        try {
+            // Update email logic
+        } catch (error) {
+            setError('Error updating email address: ' + error.message);
+        }
+    };
 
     return (
         <div>
             <h2>Profile Settings</h2>
-            <form onSubmit={handleSaveChanges}>
+            {error && <div>{error}</div>}
+            {userData && (
                 <div>
-                    <label>Display Name:</label>
-                    <input type="text" value={currentUser.displayName} onChange={(e) => setDisplayName(e.target.value)} />
-                </div>
-                <div>
-                    <input type="file" id="profilePic" accept="image/*" onChange={(e) => setPic(e.target.files[0])} />
-                    {profilePicURL && <img src={profilePicURL} alt="Profile" />}
-                </div>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" value={currentUser.email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div>
-                    <label>Bio:</label>
-                    <input type="text" value={currentUser.bio} onChange={(e) => setBio(e.target.value)} />
-                </div>
-                <button onClick={handleSaveChanges}>Update Profile</button>
-            </form>
-        </div>
+                    <h3>Username: {userData.username}</h3>
+                    <input type="text" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
+                    <button onClick={handleUpdateUsername}>Update Username</button>
 
+                    <h3>Bio: {userData.bio}</h3>
+                    <textarea value={newBio} onChange={(e) => setNewBio(e.target.value)} />
+                    <button onClick={handleUpdateBio}>Update Bio</button>
+
+                    <h3>Email Address: {userData.email}</h3>
+                    <input type="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
+                    <button onClick={handleUpdateEmail}>Update Email Address</button>
+                </div>
+            )}
+        </div>
     );
 }
