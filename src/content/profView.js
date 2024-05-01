@@ -65,7 +65,7 @@ export default function ProfView() {
                         <div style={{ padding: 10 }}>
                             <Form.Group>
                                 <div className="profileView-picture">
-                                    <img src={photoURL} alt="Profile" />
+                                    <img src={photoURL ? photoURL : "samplepfp.png"} alt="Profile" />
                                 </div>
                             </Form.Group>
                         </div>

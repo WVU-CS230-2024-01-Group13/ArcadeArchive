@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { db, storage } from '../firebase';
-import { updateUserProfile, upload } from '../contexts/dbContext';
+import { updateUserProfile } from '../contexts/dbContext';
 import { ref, get } from 'firebase/database';
 import { ref as sRef } from 'firebase/storage';
 import { uploadBytes, getDownloadURL } from 'firebase/storage';
