@@ -1,12 +1,21 @@
+
 import React,{ useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from "react-router-dom"
 import { dbSignup } from '../contexts/dbContext'
-
-
-
+/**
+ * The file contains the functionality for the sign up feature of our site.
+ * It connects and places all of the users information 
+ * into the Firebase realtime database as well as Firebase Auth.
+ */
+/**
+ * Signup component
+ * @returns Signup form
+ */
 export default function Signup() {
+    // Initializing necessary states and refs
+     
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
@@ -17,6 +26,10 @@ export default function Signup() {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
+    /**
+     * Handles form submission form the user
+     * @param {Event} e - form submission event
+     */
     async function handleSubmit(e) {
         e.preventDefault()
         //Make sure passwords match
@@ -28,7 +41,6 @@ export default function Signup() {
             setLoading(true)
             await signup(emailRef.current.value, passwordRef.current.value ) //puts user info into auth
             dbSignup(emailRef.current.value, usernameRef.current.value) // puts user info into realtime database
- // puts user info into realtime database
             navigate("/")  // navigates to the homepage
         } catch(err) {
             console.log(err);
@@ -37,6 +49,9 @@ export default function Signup() {
 
         setLoading(false)
     }
+     
+    
+     // Render signup form
      
   return (
     <>
@@ -74,9 +89,6 @@ export default function Signup() {
                 </div>
             </Card.Body>
         </Card>
-
-        
     </>
   )
 }
-
