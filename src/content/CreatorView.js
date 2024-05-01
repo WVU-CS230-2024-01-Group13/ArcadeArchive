@@ -101,7 +101,8 @@ export default function CreatorView() {
               setImageFileName(event.target.files[0].name);
             }}
           />
-          {imageFileName && <p>{imageFileName}</p>}
+
+          {imageFileName && <p>Image File: {imageFileName}</p>}
         </Form.Group>
 
         <Form.Group className="mb-2">
@@ -135,10 +136,10 @@ export default function CreatorView() {
             accept=".py"
             onChange={(event) => {
               setPythonFile(event.target.files[0]);
-              setPythonFileName(event.target.files[0].name); // Update Python file name
+              setPythonFileName(event.target.files[0].name); 
             }}
           />
-          {pythonFileName && <p>{pythonFileName}</p>} {/* Display Python file name */}
+          {pythonFileName && <p>{pythonFileName}</p>}
         </Form.Group>
 
         <Button className="form-control-file border p-2" onClick={handleImageUpload}> Upload Game</Button>
