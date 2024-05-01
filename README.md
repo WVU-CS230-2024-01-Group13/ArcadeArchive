@@ -19,11 +19,15 @@ The driving force behind this project is the desire to cultivate a supportive an
 ![Upload Page](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/d516bc97-0935-4374-bb89-5dcf926dc330)
 
 ## Features
+![Features](https://th.bing.com/th/id/OIP.HIK1-6mKNScdCtBxdYG9FgHaHa?w=225&h=220&c=7&r=0&o=5&pid=1.7)
+
 - Account creation and password recovery
 - Profile customization
 - Download and upload game files
 
 ## Installation 
+![Installation](https://th.bing.com/th/id/OIP.oF9_f5E42u86BTV2C64woQHaFW?w=215&h=180&c=7&r=0&o=5&pid=1.7)
+
 To run the project locally, you need to install the following dependencies:
 - React
 - Firebase
@@ -36,6 +40,8 @@ For detailed installation instructions on installing Firebase, please refer to [
 For detailed installation instructions on installing Bootstrap, please refer to [https://www.wikihow.com/Install-Bootstrap#:~:text=Steps%201%201%20Open%20the%20Bootstrap%20website%20in,want%20to%20use%20with%20Bootstrap.%20...%20More%20items].
 
 ## Contribute 
+![Contribution](https://th.bing.com/th/id/OIP.gL4pikLRmCMxS9qxjczoQwHaD3?w=330&h=180&c=7&r=0&o=5&pid=1.7)
+
 We welcome any and all contributions to enhance Arcade Archive. Some features we'd like to add include:
 - Private messaging users
 - User blocking functionality
