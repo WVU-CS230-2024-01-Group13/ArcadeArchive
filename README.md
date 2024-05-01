@@ -22,6 +22,9 @@ The driving force behind this project is the desire to cultivate a supportive an
 ## Features
 ![Features](https://th.bing.com/th/id/OIP.HIK1-6mKNScdCtBxdYG9FgHaHa?w=225&h=220&c=7&r=0&o=5&pid=1.7)
 
+##Account Customization
+![Account Customization]()
+
 - Account creation and password recovery
 - Profile customization
 - Real-time chat
