@@ -3,23 +3,39 @@ import { Link } from "react-router-dom";
 import { ref, get, getDatabase } from "firebase/database";
 import { storage } from "./../firebase";
 
+//exploreview function
 export default function ExploreView() {
+
+  //create all necessary constants
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+
+  //function to get list of games from database
   useEffect(() => {
     const fetchGames = async () => {
       try {
         console.log("Fetching games...");
+
+        //reference for games
         const gamesRef = ref(getDatabase(), "games");
+
+        //get games from db
         const snapshot = await get(gamesRef);
+
+        //array for games
         const gamesData = [];
+
+        //loop through all games and add to array
         snapshot.forEach((childSnapshot) => {
           const gameId = childSnapshot.key;
           const gameData = childSnapshot.val();
           gamesData.push({ id: gameId, ...gameData });
         });
+
         console.log("Games fetched:", gamesData);
+
+        //set games with array
         setGames(gamesData);
       } catch (error) {
         console.error(error);
@@ -28,6 +44,7 @@ export default function ExploreView() {
     fetchGames();
   }, []);
 
+  //function to filter games 
   const filteredGames = games.filter((game) =>
     game.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     game.description.toLowerCase().includes(searchTerm.toLowerCase())
@@ -35,6 +52,7 @@ export default function ExploreView() {
 
   // Assuming you have the downloadsCount property in each game object
   const topDownloadedGames = games.slice().sort((a, b) => b.downloadsCount - a.downloadsCount).slice(0, 5);
+
 
   return (
     <div>

@@ -6,6 +6,8 @@ import { updateUserProfile } from '../contexts/dbContext';
 import { ref, get } from 'firebase/database';
 
 export default function ProfSettingsPage() {
+
+    //create all necessary constants
     const { currentUser } = useAuth();
     const [userData, setUserData] = useState(null);
     const [newUsername, setNewUsername] = useState('');
@@ -14,9 +16,16 @@ export default function ProfSettingsPage() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+
     useEffect(() => {
+
+        //check that current user is valid
         if (currentUser) {
+
+            //reference to current user
             const userRef = ref(db, `users/${currentUser.uid}`);
+
+            //get user data from database
             get(userRef)
                 .then(snapshot => {
                     if (snapshot.exists()) {
@@ -31,8 +40,11 @@ export default function ProfSettingsPage() {
         }
     }, [currentUser]);
 
+    //function to update username
     const handleUpdateUsername = async () => {
         try {
+
+            //set new username data
             await updateUserProfile(currentUser.uid, { username: newUsername });
             setUserData({ ...userData, username: newUsername });
             setNewUsername('');
@@ -41,8 +53,11 @@ export default function ProfSettingsPage() {
         }
     };
 
+    //function to update bio
     const handleUpdateBio = async () => {
         try {
+
+            //set new bio data
             await updateUserProfile(currentUser.uid, { bio: newBio });
             setUserData({ ...userData, bio: newBio });
             setNewBio('');
@@ -51,6 +66,7 @@ export default function ProfSettingsPage() {
         }
     };
 
+    //function to update email
     const handleUpdateEmail = async () => {
         try {
             // Update email logic
