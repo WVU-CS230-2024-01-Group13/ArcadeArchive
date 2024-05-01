@@ -4,34 +4,33 @@ Arcade Archive represents more than just a gaming platform - it's a thriving eco
 
 # Motivation 
 The driving force behind this project is the desire to cultivate a supportive and inclusive space for individuals keen on game creation and exploration. We aim to build a platform where users can freely unleash their creativity, discover new experiences, and forge meaningful connections with fellow gamers. By fostering a sense of belonging and camaraderie, we aspire to make Arcade Archive not just a destination for gaming, but a vibrant community where users can find inspiration, encouragement, and endless opportunities for growth and enjoyment.
+
 # Build Status 
 
 # Code Style
 
 # Screenshots/Examples
-This is a screenshot of our designed logo.
-
+This is our designed logo:
 ![ArcadeArchiveLogo](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/5053f8c3-5203-4055-a0d0-da329b47dbee)
+*Caption: Arcade Archive Logo*
 
+Explore page with featured games and search bar:
+![Explore Page](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/3f72dc00-dd90-4a1b-a2c0-9362f9b05ba7)
+*Caption: Explore Page with Featured Games and Search Bar*
 
-This screenshot shows our explore page with featured games and search bar.
+Chat interface with test messages and usernames:
+![Chat Interface](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/87af9f53-02a0-494d-8c31-95c4b5d8bd84)
+*Caption: Chat Interface with Test Messages*
 
-![image](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/3f72dc00-dd90-4a1b-a2c0-9362f9b05ba7)
-
-
-This is a screenshot that shows our chat with some test messages and the username corresponding to them.
-
-![image](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/87af9f53-02a0-494d-8c31-95c4b5d8bd84)
-
-
-This is a screenshot that shows the page where a user and upload the game they have created.
-
-![image](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/d516bc97-0935-4374-bb89-5dcf926dc330)
+Page for uploading user-created games:
+![Upload Page](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/d516bc97-0935-4374-bb89-5dcf926dc330)
+*Caption: Upload Page for User-Created Games*
 
 # Features
 - Account creation and password recovery
 - Profile customization
 - Download and upload game files
+
 # Code Examples
 
 # Installation 
@@ -50,9 +49,11 @@ For detailed installation instructions on installing Bootstrap, please refer to 
 
 # Tests
 
-
 # Contribute 
-We would like to add the ability to private message users and ability to block users
+We welcome any and all contributions to enhance Arcade Archive. Some features we'd like to add include:
+- Private messaging users
+- User blocking functionality
+
 # Credits
 https://rhymbil.netlify.app/
-The source code and video, provided in the link above, helped our group understand certain features and some basic with Firebase.
+The source code and video, provided in the link above, helped our group understand certain features and some basics with Firebase.
