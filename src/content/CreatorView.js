@@ -1,142 +1,123 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Alert, Button, Form } from "react-bootstrap";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { storage } from "./../firebase";
+import { v4 } from "uuid";
+import { uploadGame } from "./../contexts/dbContext"; // Import the function to upload game data
+import { useAuth } from '../contexts/AuthContext';
 
-const CreatorView = () => {
-    const [loadingUpload, setLoadingUpload] = useState(false);
-    const [loadingArchive, setLoadingArchive] = useState(false);
+export default function CreatorView() {
+  const [imageUpload, setImageUpload] = useState(null);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [pythonFile, setPythonFile] = useState(null);
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
+  const { currentUser } = useAuth()
 
-    const handleUploadClick = () => {
-        setLoadingUpload(true);
-        // Simulate the verification process (replace with actual logic)
-        setTimeout(() => {
-          setLoadingUpload(false);
-        }, 2000); // Simulate a 2-second delay
-      };
-    
-      const handleArchiveClick = () => {
-        setLoadingArchive(true);
-        // Simulate the verification process (replace with actual logic)
-        setTimeout(() => {
-          setLoadingArchive(false);
-        }, 2000); // Simulate a 2-second delay
-      };
-      
+  const allowedImageTypes = ["image/png", "image/jpeg", "image/gif"];
+  const pythonAllowedExtension = ".py";
+
+  const handleImageUpload = () => {
+    if (!imageUpload || !title || !description || !pythonFile) {
+      setError("Please fill in all fields and upload both an image and a Python file.");
+      return;
+    }
+  
+    if (!imageUpload.type || !allowedImageTypes.includes(imageUpload.type)) {
+      setError("Only .png, .jpg, and .gif files are allowed for images.");
+      return;
+    }
+  
+    const pythonFileName = pythonFile.name;
+    const pythonFileExtension = pythonFileName.substring(pythonFileName.lastIndexOf('.'));
+    if (pythonFileExtension !== pythonAllowedExtension) {
+      setError("Only Python (.py) files are allowed for the Python script.");
+      return;
+    }
+  
+    const thumbnailRef = ref(storage, `thumbnails/${imageUpload.name + v4()}`);
+    const pythonRef = ref(storage, `pythonFiles/${pythonFile.name + v4()}`);
+  
+    Promise.all([
+      uploadBytes(thumbnailRef, imageUpload),
+      uploadBytes(pythonRef, pythonFile)
+    ]).then(([thumbnailSnapshot, pythonSnapshot]) => {
+      Promise.all([
+        getDownloadURL(thumbnailSnapshot.ref),
+        getDownloadURL(pythonSnapshot.ref)
+      ]).then(([thumbnailUrl, pythonUrl]) => {
+        uploadGame(title, description, thumbnailUrl, pythonUrl, currentUser.uid); // Pass the uploader's ID
+        setError(null);
+        setTitle("");
+        setDescription("");
+        setImageUpload(null);
+        setPythonFile(null);
+        setSuccessMessage("Game uploaded successfully!");
+      }).catch(error => {
+        setError("Failed to get download URLs for uploaded files. Please try again.");
+        console.error("Error getting download URLs:", error);
+      });
+    }).catch(error => {
+      setError("Failed to upload files. Please try again.");
+      console.error("Error uploading files:", error);
+    });
+  };
+  
   return (
-    <div style={styles.container}>
+    <div>
+      <h1 className="text-center font-weight-bold mb-5">Create a Game</h1>
+      <Form>
+        <Form.Group>
+          <Form.Label htmlFor="file-upload" className="form-control-file border p-2 mb-2" style={{ cursor: 'pointer' }}>
+            Choose Thumbnail Image
+          </Form.Label>
+          <Form.Control
+            id="file-upload"
+            className="d-none"
+            type="file"
+            accept=".png, .jpg, .gif"
+            onChange={(event) => setImageUpload(event.target.files[0])}
+          />
+        </Form.Group>
 
-      <div style={styles.left}>
-        <div style={styles.checkbox}>
-          <input type="checkbox" id="hideUsername" />
-          <label htmlFor="hideUsername">Hide My Username</label>
-        </div>
-        <div style={styles.checkbox}>
-          <input type="checkbox" id="allowDownloads" />
-          <label htmlFor="allowDownloads">Allow Downloads</label>
-        </div>
-      </div>
+        <Form.Group className="mb-2">
+          <Form.Control
+            type="text"
+            placeholder="Title"
+            className="form-control border p-2"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+          />
+        </Form.Group>
 
-      <div style={styles.middle}>
-        <input type="text" placeholder="Game Title" style={styles.titleInput} />
-        <textarea placeholder="Game Description" style={styles.descriptionInput} />
-      </div>
+        <Form.Group className="mb-2">
+          <Form.Control
+            as="textarea"
+            placeholder="Description"
+            className="form-control border p-2"
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
+          />
+        </Form.Group>
 
-      <div style={styles.right}>
-          <div style={{ marginBottom: '30px' }}>
-            <input type="file" accept=".py" style={styles.fileInput} />
-          </div>
-            
-          <div style={{ marginBottom: '10px' }}>
-            <button
-              style={styles.button}
-              onClick={handleUploadClick}
-              disabled={loadingUpload || loadingArchive}
-            >
-              {loadingUpload ? 'Verifying Game...' : 'Upload Game Code'}
-            </button>
-          </div>
-          <div>
-            <button
-              style={styles.button}
-              onClick={handleArchiveClick}
-              disabled={loadingArchive || loadingUpload}
-            >
-              {loadingArchive ? 'Verifying Game...' : 'Upload to Archive'}
-            </button>
-          </div>
-        </div>
+        <Form.Group>
+          <Form.Label htmlFor="python-upload" className="form-control-file border p-2 mb-2" style={{ cursor: 'pointer' }}>
+            Choose Python File
+          </Form.Label>
+          <Form.Control
+            id="python-upload"
+            className="d-none"
+            type="file"
+            accept=".py"
+            onChange={(event) => setPythonFile(event.target.files[0])}
+          />
+        </Form.Group>
 
+        <Button className="form-control-file border p-2" onClick={handleImageUpload}> Upload Game</Button>
+        {error && <Alert variant='danger'>{error}</Alert>}
+        {successMessage && <Alert variant="success">{successMessage}</Alert>}
+      </Form>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100vw',
-    height: '100vh',
-    padding: '20px',
-    backgroundColor: '#f2f2f2',
-  },
-  left: {
-    marginBottom: '-80px',
-    padding: '20px',
-  },
-  middle: {
-    marginBottom: '20px',
-    width: '80%',
-    maxWidth: '600px',
-    textAlign: 'center',
-    padding: '20px',
-  },
-  right: {
-    textAlign: 'right',
-    padding: '20px',
-  },
-  checkbox: {
-    marginBottom: '15px',
-  },
-  titleInput: {
-    padding: '12px',
-    marginBottom: '70px',
-    width: '100%',
-    padding: '8px',
-    boxSizing: 'border-box',
-    fontSize: '18px',
-    fontFamily: 'Arial',
-  },
-  descriptionInput: {
-    marginBottom: '10px',
-    width: '100%',
-    height: '300px',
-    padding: '12px',
-    boxSizing: 'border-box',
-    fontSize: '18px',
-    fontFamily: 'Arial',
-  },
-   fileInput: {
-    marginRight: '-50px',
-    marginTop: '20px',
-    width: '100%',
-    padding: '12px', 
-    boxSizing: 'border-box',
-    fontSize: '16px', 
-    fontFamily: 'Arial',
-  },
-  button: {
-    padding: '14px 28px',
-    borderRadius: '5px',
-    border: 'none',
-    backgroundColor: '#484848',
-    color: '#fff',
-    cursor: 'pointer',
-    marginLeft: '10px',
-    width: '80%',
-    height: 'auto',
-    fontSize: '16px',
-    marginBottom: '10px',
-  },
-};
-
-export default CreatorView;
+}

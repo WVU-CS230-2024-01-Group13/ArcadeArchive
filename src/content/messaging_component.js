@@ -1,129 +1,99 @@
-import React, { useState } from 'react';
-import './messagingviewstyle.css';
-import firebase from 'firebase/compat/app';
+import React, { useEffect, useState } from 'react';
+import { getDatabase, ref, onValue, push, get } from 'firebase/database'; 
+import { auth } from '../firebase';
+import "./chat.css";
 
-const MessagingComponent = () => {
-  const [selectedUser, setSelectedUser] = useState('');
-  const [chatHistory, setChatHistory] = useState('');
-  var db = firebase.database();
-  const stopRefresh = (event) => {
-    event.preventDefault();
-  };
-  const message = (username) => {
-    setSelectedUser(username);
-    const history = getHistory(username);
-    setChatHistory(history);
-  };
-  // CHAT class to house all operation needed to create a chat
+/**
+ * Implements a chat application using Firebase Realtime Database.
+ * It displays messages from all users in the social tab and allows sending new messages.
+ * It also displays the username of the person that sent the message
+ */
+function Chat() {
+    // State variables to store messages, new message input, and username
+    const [messages, setMessages] = useState([]);
+    const [newMessage, setNewMessage] = useState('');
+    const [username, setUsername] = useState('');
 
-  // chat() is used to create the chat page
-  function chat() {
-    this.create_title()
-    this.create_chat()
-  };
+    /**
+     * Sets up the database functionality to retrieve and display messages.
+     * Also fetches the current user's username to display with their messages.
+     */
+    useEffect(() => {
+        const database = getDatabase();
+        const messagesRef = ref(database, 'messages');
+        
+        // Retrieve and listen for changes to messages
+        onValue(messagesRef, (snapshot) => {
+            const messagesData = snapshot.val();
+            const messagesList = [];
+            for (let id in messagesData) {
+                messagesList.push({ id, ...messagesData[id] });
+            }
+            setMessages(messagesList);
+        });
 
-  function send_message(message, username) {
-    setSelectedUser(username);
-    const history = getHistory(username);
-    setChatHistory(history);
-    var parent = this
-    // if  there is no message
-    // then return/don't send the message
-    if (message == null) {
-      return
-    }
-    db.ref('chats/').once('value', function (message_object) {
-      // This index is mortant. It will help organize the chat in order
-      var index = parseFloat(message_object.numChildren()) + 1
-      db.ref('chats/' + `message_${index}`).set({
-        name: username,
-        message: message,
-        index: index
-      })
-        // refreshs the chat globally 
-        .then(function () {
-          parent.refresh_chat()
-        })
-    })
-  };
+        // Retrieve the current user's username
+        const user = auth.currentUser;
+        const userRef = ref(database, 'users/' + user.uid);
+        get(userRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                const userData = snapshot.val();
+                setUsername(userData.username);
+            } else {
+                console.log('No data available');
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
+    }, []);
 
-  const getHistory = (username) => {
-    const history = db.ref('chats/').doc(username);
-    return history;
-  };
+    /**
+     * Handles the change event for the new message input field.
+     * @param {Object} e - The event object.
+     */
+    const handleInputChange = (e) => {
+        setNewMessage(e.target.value);
+    };
 
-  return (
-    <div className="container">
-      <table>
-        <thead>
-          <tr>
-            <th colSpan="2">friends</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td width="50px">
-              <img src="samplepfp.png" alt="" height="50" width="50" />
-            </td>
-            <td>
-              <button type="button" onClick={() => message('username1')}>
-                username1
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td width="50px">
-              <img src="samplepfp.png" alt="" height="50" width="50" />
-            </td>
-            <td>
-              <button type="button" onClick={() => message('username2')}>
-                username2
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td width="50px">
-              <img src="samplepfp.png" alt="" height="50" width="50" />
-            </td>
-            <td>
-              <button type="button" onClick={() => message('username3')}>
-                username3
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td width="50px">
-              <img src="samplepfp.png" alt="" height="50" width="50" />
-            </td>
-            <td>
-              <button type="button" onClick={() => message('username4')}>
-                username4
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    /**
+     * Handles sending a new message to the database.
+     */
+    const handleSend = async () => {
+        const database = getDatabase();
+        const messagesRef = ref(database, 'messages');
+        const message = {
+            username: username,
+            text: newMessage
+        };
+        await push(messagesRef, message);
+        setNewMessage('');
+    };
 
-      <div id="messagebox" className="messagebox">
-        <div id="user" className="user">
-          {selectedUser && <p>{selectedUser}</p>}
+    /**
+     * hides the displayed chat messages.
+     */
+    const handleClear = () => {
+        setMessages([]);
+    };
+
+    // Creates the chat UI
+    return (
+        <div>
+            <div className='card-body'>
+                {messages.map((message, index) => (
+                    <div key={index} className='card'>
+                        <div className='card-body'>
+                            <h5 className='card-title'>{message.username}</h5>
+                            <p className='card-text'>{message.text}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <input type='text' value={newMessage} onChange={handleInputChange} placeholder='Enter Message Here' />
+            <button onClick={handleSend}>Send</button>
+            <button onClick={handleClear}>Hide Chat</button>
         </div>
-        <div id="chat" className="chat">
-          {chatHistory && <p>{chatHistory}</p>}
-        </div>
-        <form id="messageform">
-          <input type="text" id="message" name="message" placeholder="type here" />
-          <input
-            id="send"
-            type="submit"
-            value="send"
+    );
+}
 
-            onClick={(event) => send_message(message, 'username')}//username is a placeholder, right now there is no username in the database
-          />
-        </form>
-      </div>
-    </div>
-  );
-};
-
-export default MessagingComponent;
+export default Chat;
