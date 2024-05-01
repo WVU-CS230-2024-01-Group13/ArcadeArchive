@@ -21,7 +21,7 @@ The driving force behind this project is the desire to cultivate a supportive an
 
 
 *Account Customization
-![Account Customization]()
+![Account Customization](file:///Users/connorblevins/Desktop/Screenshot%202024-05-01%20at%203.37.28%E2%80%AFAM.png)
 
 ## Features
 ![Features](https://th.bing.com/th/id/OIP.HIK1-6mKNScdCtBxdYG9FgHaHa?w=225&h=220&c=7&r=0&o=5&pid=1.7)
