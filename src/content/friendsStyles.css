@@ -1,0 +1,32 @@
+.friendrequestpage{
+    text-align: center; 
+    font-family: Arial; 
+    position: relative; 
+    display: inline-block; 
+
+}
+.followArea{
+     position: absolute;
+     top: 20%; 
+     left: -10%; 
+     width: 200px; 
+     height: 100px;
+}
+.followingList{
+    position: absolute;
+    top: 50%; 
+    left: 10%; 
+    width: 50%; 
+    height: 50%;
+}
+
+thead, tr{
+    border: 1px solid black; 
+}
+.followerList{
+    position: absolute; 
+    top: 50%;
+    width: 50%;
+    height: 50%;
+    left: 20%;
+}

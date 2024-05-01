@@ -5,12 +5,17 @@ import app from '../firebase.js';
 
 const PasswordRecovery = () =>{
 
+    //create all necessary constants
     const [email, setEmail] = useState('');
     const auth = getAuth();
     const navigate = useNavigate();
 
+
+    //function to send the reset request
     const sendReset = async() => {
         try{
+
+        //sends request to email
         await sendPasswordResetEmail(auth, email);
         navigate('/');
         }
@@ -27,7 +32,7 @@ const PasswordRecovery = () =>{
         <button className = "button" type = "button" onClick = {sendReset}>
         Reset Password
         </button>
-
+        
     </div>
     </>
    );

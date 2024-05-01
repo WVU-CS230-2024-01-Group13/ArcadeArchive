@@ -1,12 +1,23 @@
+
 import React,{ useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from "react-router-dom"
 import { dbSignup } from '../contexts/dbContext'
-
-
-
+/**
+ * The file contains the functionality for the sign up feature of our site.
+ * It connects and places all of the users information 
+ * into the Firebase realtime database as well as Firebase Auth.
+ */
+/**
+ * Signup()
+ * This function show the sign up componets 
+ * handles the information that the user has input and sends it to the Firebase Auth and data base. 
+ * @returns Signup form
+ */
 export default function Signup() {
+    // Initializing necessary states and refs
+     
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
@@ -17,6 +28,12 @@ export default function Signup() {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
+    /**handleSubmit(e)
+     * Handles form submission form the user
+     * This funtion handles the information submitted.
+     * It Makes sure that the inputs are valid and allows the signup and dbSignup functions to go through 
+     * @param {Event} e - form submission event
+     */
     async function handleSubmit(e) {
         e.preventDefault()
         //Make sure passwords match
@@ -28,8 +45,7 @@ export default function Signup() {
             setLoading(true)
             await signup(emailRef.current.value, passwordRef.current.value ) //puts user info into auth
             dbSignup(emailRef.current.value, usernameRef.current.value) // puts user info into realtime database
- // puts user info into realtime database
-            navigate("/explore")  // navigates to the homepage
+            navigate("/")  // navigates to the homepage
         } catch(err) {
             console.log(err);
             setError('Failed to create an account')
@@ -37,6 +53,9 @@ export default function Signup() {
 
         setLoading(false)
     }
+     
+    
+     // Render signup form
      
   return (
     <>
@@ -74,9 +93,6 @@ export default function Signup() {
                 </div>
             </Card.Body>
         </Card>
-
-        
     </>
   )
 }
-

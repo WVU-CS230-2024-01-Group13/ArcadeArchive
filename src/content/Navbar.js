@@ -1,6 +1,4 @@
 import React from 'react';
-
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Link, useLocation } from 'react-router-dom';
 import './styles.css';
 function Navbar() {
@@ -18,9 +16,9 @@ function Navbar() {
 
   return (
   <div class="navbar navbar-menu">
-      <Link to="/" class="navbar-brand jersey-15-regular" style={{color: "white", fontSize: "35px"}}>
+      <Link to="/" class="navbar-brand" style={{color: "white"}}>
         <img src="Arcade.png" alt="Arcade Archive Logo" />
-          ARCADE ARCHIVE
+        <nobr class="jersey-15-regular" style={{fontSize: "35px"}}>ARCADE ARCHIVE</nobr>
       </Link>
 
     <div>

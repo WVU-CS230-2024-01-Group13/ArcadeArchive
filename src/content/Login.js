@@ -4,7 +4,10 @@ import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from "react-router-dom"
 import './login.css';
 
+//function for login
 export default function Login() {
+
+    //create all necessary constants
     const emailRef = useRef()
     const passwordRef = useRef()
     const { login } = useAuth()
@@ -12,14 +15,17 @@ export default function Login() {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
+    //function to handle login submissions
     async function handleSubmit(e) {
         e.preventDefault()
         
         try {
             setError('')
             setLoading(true)
+
+            //checking login against database
             await login(emailRef.current.value, passwordRef.current.value )
-            navigate("/explore");
+            navigate("/");
         } catch {
             setError('Failed to sign in')
         }

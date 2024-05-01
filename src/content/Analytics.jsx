@@ -196,15 +196,15 @@ const Analytics = () =>{
       </body>
     );
 }
-
-const styles = {
+ 
+ const bodyStyle = {
+   display: "grid",
    fontFamily: "'Times New Roman', Times, serif",
    textAlign: "center",
    color: "black",
-   fontSize: "40pt"
- };
- 
- const bodyStyle = {
+   fontSize: "40pt",
+   margin: 0,
+   padding: 0,
    backgroundColor: "rgba(255, 255, 255, 0.5)",
    backgroundImage: 'url("video-game-collage-wallpaper-preview.jpg")',
    backgroundBlendMode: "overlay"

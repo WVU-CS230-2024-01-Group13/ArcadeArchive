@@ -6,14 +6,19 @@ import { Link, useNavigate } from 'react-router-dom';
 
 export default function ProfView () {
 
+    //create all necessary constants
     const { currentUser, logout } = useAuth()
     const [error, setError] = useState("")
     const navigate = useNavigate()
 
+
+    /**function to handle logout */
     async function handleLogout() {
         setError("")
 
         try {
+            
+            //if logout is successful, navigate user back to login
             await logout()
             navigate("/login")
         } catch {
