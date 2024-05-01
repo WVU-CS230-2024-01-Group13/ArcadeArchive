@@ -10,7 +10,9 @@ import { dbSignup } from '../contexts/dbContext'
  * into the Firebase realtime database as well as Firebase Auth.
  */
 /**
- * Signup component
+ * Signup()
+ * This function show the sign up componets 
+ * handles the information that the user has input and sends it to the Firebase Auth and data base. 
  * @returns Signup form
  */
 export default function Signup() {
@@ -26,8 +28,10 @@ export default function Signup() {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
-    /**
+    /**handleSubmit(e)
      * Handles form submission form the user
+     * This funtion handles the information submitted.
+     * It Makes sure that the inputs are valid and allows the signup and dbSignup functions to go through 
      * @param {Event} e - form submission event
      */
     async function handleSubmit(e) {
