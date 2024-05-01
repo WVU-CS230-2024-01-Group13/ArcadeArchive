@@ -35,12 +35,6 @@ For detailed installation instructions on installing Firebase, please refer to [
 
 For detailed installation instructions on installing Bootstrap, please refer to [https://www.wikihow.com/Install-Bootstrap#:~:text=Steps%201%201%20Open%20the%20Bootstrap%20website%20in,want%20to%20use%20with%20Bootstrap.%20...%20More%20items].
 
-## API
-
-
-## Tests
-
-
 ## Contribute 
 We welcome any and all contributions to enhance Arcade Archive. Some features we'd like to add include:
 - Private messaging users
