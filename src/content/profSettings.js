@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { db, storage } from '../firebase';
+import { auth, db, storage } from '../firebase';
 import { updateUserProfile } from '../contexts/dbContext';
 import { ref, get } from 'firebase/database';
 import { ref as sRef } from 'firebase/storage';
@@ -14,7 +14,7 @@ export default function ProfSettingsPage() {
 
     //create all necessary constants
     const { currentUser } = useAuth();
-    const [userData, setUserData] = useState(null);
+    const [userData, setUserData] = useState('');
     const [newUsername, setNewUsername] = useState('');
     const [newBio, setNewBio] = useState('');
     const [newEmail, setNewEmail] = useState('');
@@ -44,7 +44,13 @@ export default function ProfSettingsPage() {
                     console.error('Error getting document:', error);
                 });
             getDownloadURL(sRef(storage, `profilePictures/${currentUser.uid}`)).then(snapshot => {
-                setPhotoURL(snapshot)
+                if (snapshot) {
+                    setPhotoURL(snapshot)
+                } else {
+                    console.log('No such document!');
+                }
+            }).catch(error => {
+                console.error('error getting url', error)
             });
         }
     }, [currentUser]);
@@ -164,6 +170,71 @@ export default function ProfSettingsPage() {
                     </Form>
                 </div>
             )}
+            {!userData && (
+                <div>
+                    <Form>
+                        <div style={{ padding: 10 }}>
+                            <Form.Group>
+                                <div className="profile-picture">
+                                    <img src={"samplepfp.png"} alt='avatar' />
+                                </div>
+                                <Form.Control type="file" onChange={(e) => setNewPhoto(e.target.files[0])} />
+                                <div style={{ padding: 10 }}>
+                                    <button className="jersey-15-regular" style={{ fontSize: 20 }} onClick={handleUpload}>Upload Profile Picture</button>
+                                </div>
+                            </Form.Group>
+                        </div>
+                        <div style={{ padding: 10 }}>
+                            <Form.Group className="mb-2">
+                                <h4 className='jersey-15-regular'>Current Username: {auth.currentUser.email}</h4>
+                                <Form.Control
+                                    type="text"
+
+                                    className="form-control border p-2"
+                                    value={newUsername}
+                                    onChange={(e) => setNewUsername(e.target.value)}
+                                />
+                                <div style={{ padding: 10 }}>
+                                    <button className="jersey-15-regular" style={{ fontSize: 20 }} onClick={handleUpdateUsername}>Update Username</button>
+                                </div>
+                            </Form.Group>
+                        </div>
+
+
+                        <div style={{ padding: 10 }}>
+                            <Form.Group className="mb-2">
+                                <h4 className='jersey-15-regular'>Current Bio: {""}</h4>
+                                <Form.Control
+                                    type="textArea"
+
+                                    className="form-control border p-2"
+                                    value={newBio}
+                                    onChange={(e) => setNewBio(e.target.value)}
+                                />
+                                <div style={{ padding: 10 }}>
+                                    <button className="jersey-15-regular" style={{ fontSize: 20 }} onClick={handleUpdateBio}>Update Bio</button>
+                                </div>
+                            </Form.Group>
+                        </div>
+                        <div style={{ padding: 10 }}>
+                            <Form.Group className="mb-2">
+                                <h4 className='jersey-15-regular'>Current Email Address: {auth.currentUser.email}</h4>
+                                <Form.Control
+                                    type="email"
+
+                                    className="form-control border p-2"
+                                    value={newEmail}
+                                    onChange={(e) => setNewEmail(e.target.value)}
+                                />
+                                <div style={{ padding: 10 }}>
+                                    <button className="jersey-15-regular" style={{ fontSize: 20 }} onClick={handleUpdateEmail}>Update Email Address</button>
+                                </div>
+                            </Form.Group>
+                        </div>
+                    </Form>
+                </div>
+            )
+            }
         </div>
     );
 }
