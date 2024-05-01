@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 import {getAuth, sendPasswordResetEmail} from 'firebase/auth';
 import app from '../firebase.js';
-import './PasswordRecoveryStyles.css';
 const PasswordRecovery = () =>{
 
     const [email, setEmail] = useState('');
