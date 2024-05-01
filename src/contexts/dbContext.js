@@ -1,4 +1,3 @@
-//import React, { useContext, useState, useEffect } from 'react'
 import { push, ref, set, remove, get} from 'firebase/database';
 import { db, auth } from '../firebase';
 
@@ -40,22 +39,7 @@ async function isUsernameTaken(username) {
    
 
 }
- export function chatDB (username, message){
-    const userRef=ref(db,'chats/' )
-    get(userRef,function(message_object){ 
-    
-        var index = parseFloat(message_object.numChildren()) + 1
-    ref(db,'chats/' + `message_${index}`).set({
-          name: username,
-          message: message,
-          index: index
-        })
-          // refreshs the chat globally 
-          .then(function () {
-            
-          })
-      })
-    }
+ 
     export function get_name(){
         const user = auth.currentUser;
 
