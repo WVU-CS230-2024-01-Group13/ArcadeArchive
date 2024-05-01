@@ -78,6 +78,7 @@ export default function ProfSettingsPage() {
     //function to update email
     const handleUpdateEmail = async () => {
         try {
+            //set new email data
             await updateUserProfile(currentUser.uid, { email: newEmail })
             setUserData({ ...userData, email: newEmail })
             setNewEmail('')
@@ -85,11 +86,13 @@ export default function ProfSettingsPage() {
             setError('Error updating email address: ' + error.message);
         }
     };
-
+    //function to handle image upload
     const handleUpload = async () => {
+        //uploads image as bytes to the database
         uploadBytes(sRef(storage, `profilePictures/${currentUser.uid}`), newPhoto)
             .then((snapshot) => {
                 console.log('Uploaded a blob or file!');
+                //setsphotoURL
                 setPhotoURL(snapshot)
             });
     }

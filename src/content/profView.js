@@ -18,13 +18,34 @@ export default function ProfView() {
     const [error, setError] = useState("")
     const navigate = useNavigate()
 
+    //retrieve user data from respective databases
+    useEffect(() => {
+        if (currentUser) {
+            const userRef = ref(db, `users/${currentUser.uid}`);
+            get(userRef)
+                .then(snapshot => {
+                    if (snapshot.exists()) {
+                        setUserData(snapshot.val());
+                    } else {
+                        console.log('No such document!');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error getting document:', error);
+                });
+            getDownloadURL(sRef(storage, `profilePictures/${currentUser.uid}`)).then(snapshot => {
+                setPhotoURL(snapshot)
+            });
+        }
+    }, [currentUser]);
+
 
     /**function to handle logout */
     async function handleLogout() {
         setError("")
 
         try {
-            
+
             //if logout is successful, navigate user back to login
             await logout()
             navigate("/login")
