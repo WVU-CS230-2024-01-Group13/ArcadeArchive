@@ -10,21 +10,17 @@ The driving force behind this project is the desire to cultivate a supportive an
 # Code Style
 
 # Screenshots/Examples
-This is our designed logo:
+*Arcade Archive Logo*
 ![ArcadeArchiveLogo](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/5053f8c3-5203-4055-a0d0-da329b47dbee)
-*Caption: Arcade Archive Logo*
 
-Explore page with featured games and search bar:
+*Explore Page with Featured Games and Search Bar*
 ![Explore Page](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/3f72dc00-dd90-4a1b-a2c0-9362f9b05ba7)
-*Caption: Explore Page with Featured Games and Search Bar*
 
-Chat interface with test messages and usernames:
+*Chat Interface with Test Messages*
 ![Chat Interface](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/87af9f53-02a0-494d-8c31-95c4b5d8bd84)
-*Caption: Chat Interface with Test Messages*
 
-Page for uploading user-created games:
+*Upload Page for User-Created Games*
 ![Upload Page](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/d516bc97-0935-4374-bb89-5dcf926dc330)
-*Caption: Upload Page for User-Created Games*
 
 # Features
 - Account creation and password recovery
@@ -32,6 +28,7 @@ Page for uploading user-created games:
 - Download and upload game files
 
 # Code Examples
+
 
 # Installation 
 To run the project locally, you need to install the following dependencies:
