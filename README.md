@@ -44,9 +44,8 @@ For detailed installation instructions on installing Bootstrap, please refer to 
 ## Contribute 
 ![Contribution](https://th.bing.com/th/id/OIP.gL4pikLRmCMxS9qxjczoQwHaD3?w=330&h=180&c=7&r=0&o=5&pid=1.7)
 
-We welcome any and all contributions to enhance Arcade Archive. Some features we'd like to add include:
-- Private messaging users
-- User blocking functionality
+We welcome any and all contributions to enhance Arcade Archive. Go to https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/blob/main/Contributing.md for more details.
+
 
 ## Credits
 We extend our gratitude to the team at [Rhymbil](https://rhymbil.netlify.app/) for generously sharing their source code and instructional video, available at the provided link. Their resources have been instrumental in deepening our understanding of specific features and fundamental concepts related to Firebase integration.
