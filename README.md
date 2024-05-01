@@ -1,14 +1,15 @@
 # CS Group 13 - Arcade Archive 
+![ArcadeArchiveLogo](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/5053f8c3-5203-4055-a0d0-da329b47dbee)
+
 Arcade Archive is an innovative web platform designed to cater to gamers worldwide with a comprehensive suite of features. It offers account management, including account creation, password recovery, and extensive profile customization. Users can engage in real-time global chat, fostering connections and friendships. The platform also enables game sharing through download and upload functionalities, encouraging collaboration and creativity.
 Arcade Archive represents more than just a gaming platform - it's a thriving ecosystem where users can discover, connect, and thrive. With its commitment to user satisfaction, Arcade Archive sets the standard for the next generation of gaming communities.
 
 ## Motivation 
+![Motivation](https://th.bing.com/th/id/OIP.M9xjE4cF58gFtM4234rQnAHaE8?w=247&h=180&c=7&r=0&o=5&pid=1.7)
+
 The driving force behind this project is the desire to cultivate a supportive and inclusive space for individuals keen on game creation and exploration. We aim to build a platform where users can freely unleash their creativity, discover new experiences, and forge meaningful connections with fellow gamers. By fostering a sense of belonging and camaraderie, we aspire to make Arcade Archive not just a destination for gaming, but a vibrant community where users can find inspiration, encouragement, and endless opportunities for growth and enjoyment.
 
 ## Screenshots/Examples
-*Arcade Archive Logo*
-![ArcadeArchiveLogo](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/5053f8c3-5203-4055-a0d0-da329b47dbee)
-
 *Explore Page with Featured Games and Search Bar*
 ![Explore Page](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/3f72dc00-dd90-4a1b-a2c0-9362f9b05ba7)
 
@@ -26,7 +27,7 @@ The driving force behind this project is the desire to cultivate a supportive an
 - Download and upload game files
 
 ## Installation 
-![Installation](https://th.bing.com/th/id/OIP.oF9_f5E42u86BTV2C64woQHaFW?w=215&h=180&c=7&r=0&o=5&pid=1.7)
+![Installation](https://th.bing.com/th/id/OIP.aLBmjZB5X8B07xFL_OFSWQHaEG?w=299&h=180&c=7&r=0&o=5&pid=1.7)
 
 To run the project locally, you need to install the following dependencies:
 - React
