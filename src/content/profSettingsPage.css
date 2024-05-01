@@ -1,0 +1,34 @@
+.profile-picture {
+    width: 100px;
+    /* Adjust the size of the circular div */
+    height: 100px;
+    /* Adjust the size of the circular div */
+    border-radius: 50%;
+    /* Make it circular */
+    overflow: hidden;
+    /* Hide overflow content */
+    margin-left: 137px;
+    margin-bottom: 10px;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: auto;
+}
+
+.profileView-picture {
+    width: 100px;
+    /* Adjust the size of the circular div */
+    height: 100px;
+    /* Adjust the size of the circular div */
+    border-radius: 50%;
+    /* Make it circular */
+    overflow: hidden;
+    margin-left: 138px;
+
+}
+
+.profileView-picture img {
+    width: 100%;
+    height: auto;
+}

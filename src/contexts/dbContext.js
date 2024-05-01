@@ -1,4 +1,3 @@
-//import React, { useContext, useState, useEffect } from 'react'
 import { push, ref, set, remove, get, update} from 'firebase/database';
 import { db, auth } from '../firebase';
 

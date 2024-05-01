@@ -6,7 +6,10 @@ import { v4 } from "uuid";
 import { uploadGame } from "./../contexts/dbContext"; // Import the function to upload game data
 import { useAuth } from '../contexts/AuthContext';
 
+//creatorview function
 export default function CreatorView() {
+
+  //create all necessary constants
   const [imageUpload, setImageUpload] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -20,28 +23,39 @@ export default function CreatorView() {
   const allowedImageTypes = ["image/png", "image/jpeg", "image/gif"];
   const pythonAllowedExtension = ".py";
 
+
+  //function to upload image for game
   const handleImageUpload = () => {
+
+    //check if any fields are empty
     if (!imageUpload || !title || !description || !pythonFile) {
       setError("Please fill in all fields and upload both an image and a Python file.");
       return;
     }
-  
+    
+    //check image type
     if (!imageUpload.type || !allowedImageTypes.includes(imageUpload.type)) {
       setError("Only .png, .jpg, and .gif files are allowed for images.");
       return;
     }
   
+
+    //constants for game file
     const pythonFileName = pythonFile.name;
     const pythonFileExtension = pythonFileName.substring(pythonFileName.lastIndexOf('.'));
+
+    //check for correct file type (.py)
     if (pythonFileExtension !== pythonAllowedExtension) {
       setError("Only Python (.py) files are allowed for the Python script.");
       return;
     }
   
+    //references for thumbnail and python file
     const thumbnailRef = ref(storage, `thumbnails/${imageUpload.name + v4()}`);
     const pythonRef = ref(storage, `pythonFiles/${pythonFile.name + v4()}`);
   
-    // Uploads inputted fields data to real time database
+
+    //uploads all details for game including image/file/description/etc. 
     Promise.all([
       uploadBytes(thumbnailRef, imageUpload),
       uploadBytes(pythonRef, pythonFile)
@@ -84,10 +98,10 @@ export default function CreatorView() {
             accept=".png, .jpg, .gif"
             onChange={(event) => {
               setImageUpload(event.target.files[0]);
-              setImageFileName(event.target.files[0].name); // Update image file name
+              setImageFileName(event.target.files[0].name);
             }}
           />
-          {imageFileName && <p>{imageFileName}</p>} {/* Display image file name */}
+          {imageFileName && <p>{imageFileName}</p>}
         </Form.Group>
 
         <Form.Group className="mb-2">
