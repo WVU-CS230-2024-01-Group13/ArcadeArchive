@@ -14,7 +14,7 @@ export default function ProfSettingsPage() {
 
     //create all necessary constants
     const { currentUser } = useAuth();
-    const [userData, setUserData] = useState('');
+    const [userData, setUserData] = useState(null);
     const [newUsername, setNewUsername] = useState('');
     const [newBio, setNewBio] = useState('');
     const [newEmail, setNewEmail] = useState('');
@@ -43,15 +43,19 @@ export default function ProfSettingsPage() {
                 .catch(error => {
                     console.error('Error getting document:', error);
                 });
-            getDownloadURL(sRef(storage, `profilePictures/${currentUser.uid}`)).then(snapshot => {
-                if (snapshot) {
-                    setPhotoURL(snapshot)
-                } else {
-                    console.log('No such document!');
-                }
-            }).catch(error => {
-                console.error('error getting url', error)
-            });
+
+            const fetchData = async () => {
+                await getDownloadURL(sRef(storage, `profilePictures/${currentUser.uid}`)).then(snapshot => {
+                    if (snapshot) {
+                        setPhotoURL(snapshot)
+                    } else {
+                        console.log('No such document!');
+                    }
+                }).catch(error => {
+                    console.error('error getting url', error)
+                });
+            }
+            fetchData();
         }
     }, [currentUser]);
 
@@ -95,7 +99,7 @@ export default function ProfSettingsPage() {
     //function to handle image upload
     const handleUpload = async () => {
         //uploads image as bytes to the database
-        uploadBytes(sRef(storage, `profilePictures/${currentUser.uid}`), newPhoto)
+        await uploadBytes(sRef(storage, `profilePictures/${currentUser.uid}`), newPhoto)
             .then((snapshot) => {
                 console.log('Uploaded a blob or file!');
                 //setsphotoURL

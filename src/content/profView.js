@@ -13,7 +13,7 @@ export default function ProfView() {
 
     //create all necessary constants
     const { currentUser, logout } = useAuth()
-    const [userData, setUserData] = useState('')
+    const [userData, setUserData] = useState(null)
     const [photoURL, setPhotoURL] = useState('')
     const [error, setError] = useState("")
     const navigate = useNavigate()
@@ -33,8 +33,8 @@ export default function ProfView() {
                 .catch(error => {
                     console.error('Error getting document:', error);
                 });
-            getDownloadURL(sRef(storage, `profilePictures/${currentUser.uid}`))
-                .then(snapshot => {
+            const fetchData = async () => {
+                await getDownloadURL(sRef(storage, `profilePictures/${currentUser.uid}`)).then(snapshot => {
                     if (snapshot) {
                         setPhotoURL(snapshot)
                     } else {
@@ -43,6 +43,8 @@ export default function ProfView() {
                 }).catch(error => {
                     console.error('error getting url', error)
                 });
+            }
+            fetchData();
         }
     }, [currentUser]);
 
