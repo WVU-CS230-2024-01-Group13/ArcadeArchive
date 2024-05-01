@@ -14,6 +14,7 @@ import ProfView from "./content/profView.js";
 import ProfSettingsPage from "./content/profSettings.js";
 import PasswordRecovery from "./content/PasswordRecovery.jsx"
 import GameDetailsView from "./content/GameDetailsView.js";
+import UpdateGame from "./content/UpdateGame.js";
 import Chat from "./content/messaging_component.js";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
               <Route element={<PrivateRoute />}>
                 <Route path='/' element={<ExploreView />} />
                 <Route path='/game/:id' element={<GameDetailsView />} />
+                <Route path="/update-game/:id" element={<UpdateGame />} />
                 <Route path='/social' element={<Chat />} />
                 <Route path='/friends' element={<Friends />} />
 

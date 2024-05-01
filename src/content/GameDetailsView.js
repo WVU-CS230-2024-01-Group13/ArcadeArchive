@@ -65,6 +65,10 @@ export default function GameDetailsView() {
       console.error("Error deleting game:", error);
     }
   };
+  
+  const handleUpdateGame = () => {
+    navigate(`/update-game/${id}`);
+  };
 
   return (
     <Container>
@@ -77,15 +81,20 @@ export default function GameDetailsView() {
                 <Card.Title>{game.title}</Card.Title>
                 <Card.Text>{game.description}</Card.Text>
                 {pythonUrl && (
-                  <Button onClick={trackDownload} variant="primary" href={pythonUrl} download={`${game.title}.py`} style={{marginBottom: "40px"}}>
-                    Download Python File
+                  <Button onClick={trackDownload} variant="primary" href={pythonUrl} download={`${game.title}.py`} style={{marginBottom: "10px"}}>
+                    View Game File
                   </Button>
                 )}
 
-                {currentUser && currentUser.uid === game.uploaderId && ( // Display delete button only if the user is the uploader
-                  <Button variant="danger" onClick={handleDeleteGame} className="ml-2">
-                    Delete Game
-                  </Button>
+                {currentUser && currentUser.uid === game.uploaderId && (
+                  <div>
+                    <Button variant="danger" onClick={handleDeleteGame} className="ml-2" style={{marginBottom: "10px"}}>
+                      Delete Game
+                    </Button>
+                    <Button onClick={handleUpdateGame} className="ml-2" style={{marginBottom: "10px", backgroundColor: "#FFD700", borderColor: "#FFD700" }}>
+                      Update Game
+                    </Button>
+                  </div>
                 )}
               </Card.Body>
             </Card>

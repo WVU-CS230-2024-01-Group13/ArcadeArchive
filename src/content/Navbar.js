@@ -24,7 +24,6 @@ function Navbar() {
     <div>
       <Link to="/" activeClassName="active">Explore</Link>
       <Link to="/create" activeClassName="active">Create</Link>
-      <Link to="/analytics" activeClassName="active">Analytics</Link>
       <Link to="/social" activeClassName="active">Social</Link>
       <Link to="/profile" activeClassName="active">Profile</Link>
       <Link to="/friends" activeClassName = "active">Friends</Link>

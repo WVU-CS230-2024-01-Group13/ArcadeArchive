@@ -54,7 +54,7 @@ export default function ExploreView() {
       />
     {!searchTerm && ( // Only render if search term is empty
         <>
-        <h2 class="jersey-15-regular" style={{ marginTop: "25px", marginBottom: "25px", textDecorationLine: "underline" }}>Most Downloaded</h2>
+        <h2 class="jersey-15-regular" style={{ marginTop: "25px", marginBottom: "25px", textDecorationLine: "underline" }}>Most Viewed</h2>
         <div style={{ margin: "25px", display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "50px", justifyContent: "center"}}>
               {topDownloadedGames.map((game) => (
                   <div key={game.id} style={{width: "200px", maxWidth: "300px",border: "1px solid #ccc", borderRadius: "10px", padding: "10px", backgroundColor: "lightblue"}}>

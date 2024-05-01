@@ -13,6 +13,8 @@ export default function CreatorView() {
   const [pythonFile, setPythonFile] = useState(null);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [imageFileName, setImageFileName] = useState(""); // State to store image file name
+  const [pythonFileName, setPythonFileName] = useState(""); // State to store Python file name
   const { currentUser } = useAuth()
 
   const allowedImageTypes = ["image/png", "image/jpeg", "image/gif"];
@@ -39,6 +41,7 @@ export default function CreatorView() {
     const thumbnailRef = ref(storage, `thumbnails/${imageUpload.name + v4()}`);
     const pythonRef = ref(storage, `pythonFiles/${pythonFile.name + v4()}`);
   
+    // Uploads inputted fields data to real time database
     Promise.all([
       uploadBytes(thumbnailRef, imageUpload),
       uploadBytes(pythonRef, pythonFile)
@@ -47,12 +50,14 @@ export default function CreatorView() {
         getDownloadURL(thumbnailSnapshot.ref),
         getDownloadURL(pythonSnapshot.ref)
       ]).then(([thumbnailUrl, pythonUrl]) => {
-        uploadGame(title, description, thumbnailUrl, pythonUrl, currentUser.uid); // Pass the uploader's ID
+        uploadGame(title, description, thumbnailUrl, pythonUrl, currentUser.uid);
         setError(null);
         setTitle("");
         setDescription("");
         setImageUpload(null);
         setPythonFile(null);
+        setImageFileName(imageUpload.name);
+        setPythonFileName(pythonFile.name);
         setSuccessMessage("Game uploaded successfully!");
       }).catch(error => {
         setError("Failed to get download URLs for uploaded files. Please try again.");
@@ -77,8 +82,12 @@ export default function CreatorView() {
             className="d-none"
             type="file"
             accept=".png, .jpg, .gif"
-            onChange={(event) => setImageUpload(event.target.files[0])}
+            onChange={(event) => {
+              setImageUpload(event.target.files[0]);
+              setImageFileName(event.target.files[0].name); // Update image file name
+            }}
           />
+          {imageFileName && <p>{imageFileName}</p>} {/* Display image file name */}
         </Form.Group>
 
         <Form.Group className="mb-2">
@@ -110,8 +119,12 @@ export default function CreatorView() {
             className="d-none"
             type="file"
             accept=".py"
-            onChange={(event) => setPythonFile(event.target.files[0])}
+            onChange={(event) => {
+              setPythonFile(event.target.files[0]);
+              setPythonFileName(event.target.files[0].name); // Update Python file name
+            }}
           />
+          {pythonFileName && <p>{pythonFileName}</p>} {/* Display Python file name */}
         </Form.Group>
 
         <Button className="form-control-file border p-2" onClick={handleImageUpload}> Upload Game</Button>
