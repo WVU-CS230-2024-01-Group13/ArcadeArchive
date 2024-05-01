@@ -19,11 +19,12 @@ The driving force behind this project is the desire to cultivate a supportive an
 *Upload Page for User-Created Games*
 ![Upload Page](https://github.com/WVU-CS230-2024-01-Group13/ArcadeArchive/assets/143005488/d516bc97-0935-4374-bb89-5dcf926dc330)
 
+
+*Account Customization
+![Account Customization]()
+
 ## Features
 ![Features](https://th.bing.com/th/id/OIP.HIK1-6mKNScdCtBxdYG9FgHaHa?w=225&h=220&c=7&r=0&o=5&pid=1.7)
-
-##Account Customization
-![Account Customization]()
 
 - Account creation and password recovery
 - Profile customization
