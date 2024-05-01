@@ -24,6 +24,7 @@ The driving force behind this project is the desire to cultivate a supportive an
 
 - Account creation and password recovery
 - Profile customization
+- Real-time chat
 - Download and upload game files
 
 ## Installation 
