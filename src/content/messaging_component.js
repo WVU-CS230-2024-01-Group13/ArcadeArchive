@@ -1,34 +1,44 @@
-// This funciton implements a chat. It uses the Firebase realtime database to do so
-// it takes the username store with your account information as well as the message you input and displays it to the screen and all other users in the socail tab. 
 import React, { useEffect, useState } from 'react';
 import { getDatabase, ref, onValue, push, get } from 'firebase/database'; 
-import { auth} from '../firebase'
-import "./chat.css"
+import { auth } from '../firebase';
+import "./chat.css";
 
+/**
+ * Implements a chat application using Firebase Realtime Database.
+ * It displays messages from all users in the social tab and allows sending new messages.
+ * It also displays the username of the person that sent the message
+ */
 function Chat() {
+    // State variables to store messages, new message input, and username
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
     const [username, setUsername] = useState('');
 
+    /**
+     * Sets up the database functionality to retrieve and display messages.
+     * Also fetches the current user's username to display with their messages.
+     */
     useEffect(() => {
-        // sets up database functionality and gets the perious messages
         const database = getDatabase();
-        const messagesRef = ref(database,'messages');
+        const messagesRef = ref(database, 'messages');
+        
+        // Retrieve and listen for changes to messages
         onValue(messagesRef, (snapshot) => {
             const messagesData = snapshot.val();
             const messagesList = [];
-            for(let id in messagesData) {
+            for (let id in messagesData) {
                 messagesList.push({ id, ...messagesData[id] });
             }
             setMessages(messagesList);
         });
-        //gets username to display in database and in message
+
+        // Retrieve the current user's username
         const user = auth.currentUser;
-        const userRef = ref(database, 'users/'+user.uid);
+        const userRef = ref(database, 'users/' + user.uid);
         get(userRef).then((snapshot) => {
             if (snapshot.exists()) {
-              const userData = snapshot.val();
-              setUsername(userData.username);
+                const userData = snapshot.val();
+                setUsername(userData.username);
             } else {
                 console.log('No data available');
             }
@@ -37,13 +47,20 @@ function Chat() {
         });
     }, []);
 
+    /**
+     * Handles the change event for the new message input field.
+     * @param {Object} e - The event object.
+     */
     const handleInputChange = (e) => {
         setNewMessage(e.target.value);
     };
-    // handles the input in the chat
+
+    /**
+     * Handles sending a new message to the database.
+     */
     const handleSend = async () => {
         const database = getDatabase();
-        const messagesRef = ref(database,'messages');
+        const messagesRef = ref(database, 'messages');
         const message = {
             username: username,
             text: newMessage
@@ -51,11 +68,15 @@ function Chat() {
         await push(messagesRef, message);
         setNewMessage('');
     };
-    // hide chat messages
+
+    /**
+     * hides the displayed chat messages.
+     */
     const handleClear = () => {
         setMessages([]);
     };
 
+    // Creates the chat UI
     return (
         <div>
             <div className='card-body'>
