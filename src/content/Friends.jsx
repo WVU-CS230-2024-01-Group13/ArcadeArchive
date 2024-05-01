@@ -4,12 +4,16 @@ import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 import {follow, unfollow} from '../contexts/dbContext'
 import { useAuth } from '../contexts/AuthContext.js';
-import './friendsStyles.css'
+import {ref, getDatabase, onValue} from 'firebase/database';
+import './friendsStyles.css';
 
 function Friends(){
     const navigate = useNavigate();
     const [toUserId, setToUserId] = useState('');
+    const {currentUser} = useAuth();
     const auth = useAuth();
+    const[followers, setFollowers] = useState([]);
+    const[following, setFollowing] = useState([]);
 
     const handleFollow = () => {
         follow(toUserId);
